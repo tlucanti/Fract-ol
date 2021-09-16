@@ -15,7 +15,7 @@ NAME		=	Fract-ol
 CFLAGS		=	-Wall -Wextra -Werror
 COPTIONS	=	-O3
 RM			=	rm -f
-LIBRARY		=	/media/kostya/Data/CLion/Fract-ol/mlx/libmlx.a -Imlx -lXext -lX11 -lm -lz
+LIBRARY		=	/media/kostya/Data/CLion/Fract-ol/mlxlinux/libmlx.a -Imlx -lXext -lX11 -lm -lz
 
 SRCS		=	\
 				error		\
