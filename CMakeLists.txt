@@ -7,7 +7,7 @@ project(Fract_ol)
 # compile flags
 # set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 # (to speed up project)
-# set(CMAKE_C_FLAGS "-O3 -ffast-math")
+ set(CMAKE_C_FLAGS "-O0")# -ffast-math")
 
 set(CMAKE_C_STANDARD 99)
 
@@ -22,6 +22,8 @@ add_executable(Fract_ol
         memory.h
 
         main.c
+        ft_atodl.c
+        utils.c
         fract-ol.h
         global.h
         color.h

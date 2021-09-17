@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.h                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 21:01:01 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/16 16:08:39 by kostya           ###   ########.fr       */
+/*   Created: 2021/09/17 16:52:53 by kostya            #+#    #+#             */
+/*   Updated: 2021/09/17 18:09:03 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MEMORY_H
-# define MEMORY_H
+#include "fract-ol.h"
 
-#include <malloc.h>
-
-void	*xmalloc(size_t size) __attribute__((malloc)) __attribute__((warn_unused_result));
-
-#endif
+int	ft_atoi_double(const char *str, int *i1, int *i2)
+{
+	if (*str == '+')
+		return (1);
+	*i1 = ft_atoi(str);
+	while (*str && *str != '+')
+		++str;
+	if (!*str)
+		return (1);
+	*i2 = ft_atoi(str + 1);
+	while (*str)
+		++str;
+	if (str[-1] == '+')
+		return (1);
+	return (0);
+}
