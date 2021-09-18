@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:36:14 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/18 21:07:14 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/18 21:14:05 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_button_press(int key_code, void *__d)
 	else if (key_code == 97)
 		data->params->c_real /= 1.002;
 	draw_image();
-	printf("%d\n", key_code);
+	// printf("%d\n", key_code);
 	return (0);
 }
 
