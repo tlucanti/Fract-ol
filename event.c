@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:36:14 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/18 00:00:40 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/18 21:07:14 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_close_window(int __s, void *__d)
 int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 {
 	t_data	*data;
-	FLOAT	scale = 2; //1.2;
+	FLOAT	scale = 1.2;//1.2;
 
 	data = get_data();
 	FLOAT x = data->params->center_real + data->params->width / (FLOAT)data->res_x * (mouse_x - (FLOAT)data->res_x / 2);
@@ -83,8 +83,16 @@ int	ft_button_press(int key_code, void *__d)
 		print_info(data);
 		return (0);
 	}
+	else if (key_code == 119)
+		data->params->c_imag *= 1.1;
+	else if (key_code == 115)
+		data->params->c_imag /= 1.1;
+	else if (key_code == 100)
+		data->params->c_real *= 1.002;
+	else if (key_code == 97)
+		data->params->c_real /= 1.002;
 	draw_image();
-	// printf("%d\n", key_code);
+	printf("%d\n", key_code);
 	return (0);
 }
 

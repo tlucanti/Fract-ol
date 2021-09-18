@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:24:11 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/17 22:55:11 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/18 20:59:14 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	draw_image();
 # define KEY_DOWN	65364
 
 # define KEY_SPEED	0.05
+# define C_SPEED	1.01
 
 #endif
