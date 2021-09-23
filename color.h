@@ -6,12 +6,21 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:23:37 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/13 23:00:02 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/21 16:06:41 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#ifndef COLOR_H
+# define COLOR_H
+
+# define RED			0x00ff0000
+# define GREEN			0x0000ff00
+# define BLUE			0x000000ff
+# define YELLOW			0x00ffff00
+# define PURPLE			0x00ff00ff
+# define CYAN			0x0000ffff
+# define WHITE			0x00ffffff
+# define BLACK			0x00000000
 
 # define TERM_BLACK		"\e[1;90m"
 # define TERM_RED		"\e[1;91m"
@@ -28,5 +37,10 @@
 # define ERROR			TERM_RED
 # define INFO			TERM_BLUE
 # define RESET			TERM_RESET
+
+# define OK_TOKEN		1
+# define WARNING_TOKEN	2
+# define ERROR_TOKEN	3
+# define INFO_TOKEN		4
 
 #endif

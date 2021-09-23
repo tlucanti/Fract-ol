@@ -13,6 +13,8 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(Fract_ol
         error.c
+        error1.c
+        error2.c
         error.h
 
         event.c
@@ -21,17 +23,25 @@ add_executable(Fract_ol
         memory.c
         memory.h
 
+        julia.c
+        mandelbrot.c
+        newton_pool.c
+
         main.c
+        options.c
         ft_atodl.c
+        ft_memcmp.c
+        ft_memset.c
         utils.c
-        fract-ol.h
+        utils1.c
+        fract_ol.h
         global.h
         color.h
-)
+        )
 link_directories(/usr/local/lib/)
 target_link_libraries(Fract_ol
         Xext
-        X11    # for mlx
+        X11             # for mlx
         m               # math library
         pthread         # for multithreading
         /media/kostya/Data/CLion/Fract-ol/mlxlinux/libmlx.a
