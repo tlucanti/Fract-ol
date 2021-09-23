@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:36:14 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 14:40:42 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 21:01:51 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 void	print_info(const t_data *restrict data);
 int		__ft_button_press_extension(int key_code, t_data *restrict data);
 
-int	ft_close_window(__attribute__((unused)) int __s,
-	__attribute__((unused)) void *__d)
+int	ft_close_window(void)
 {
 	t_data	*data;
 
@@ -66,7 +65,7 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 	t_data * restrict data;
 	data = get_data();
 	if (key_code == KEY_ESC)
-		ft_close_window(0, NULL);
+		ft_close_window();
 	else if (key_code == NUM_UP)
 		data->params->center_imag -= data->params->width * KEY_SPEED;
 	else if (key_code == NUM_DOWN)
@@ -76,10 +75,11 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 	else if (key_code == NUM_LEFT)
 		data->params->center_real -= data->params->width * KEY_SPEED;
 	else if (key_code == KEY_UP)
-		data->params->recursion_depth = (data->params->recursion_depth * SCALE)
-			+ 1;
+		data->params->recursion_depth = (unsigned int)(data->params
+				->recursion_depth * SCALE) + 1;
 	else if (key_code == KEY_DOWN)
-		data->params->recursion_depth = data->params->recursion_depth / SCALE;
+		data->params->recursion_depth = (unsigned int)(data->params
+				->recursion_depth / SCALE);
 	else
 		return (__ft_button_press_extension(key_code, data));
 	draw_image(0);
@@ -102,9 +102,9 @@ inline int	__ft_button_press_extension(int key_code, t_data *restrict data)
 	else if (key_code == 97)
 		data->params->c_real /= 1.002;
 	else if (key_code == 45)
-		ft_mouse_press(4, data->res_x / 2, data->res_y / 2);
+		ft_mouse_press(4, (int)data->res_x / 2, (int)data->res_y / 2);
 	else if (key_code == 61)
-		ft_mouse_press(5, data->res_x / 2, data->res_y / 2);
+		ft_mouse_press(5, (int)data->res_x / 2, (int)data->res_y / 2);
 	else if (key_code == 112)
 		screenshot(data);
 	else

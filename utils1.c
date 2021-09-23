@@ -12,8 +12,6 @@
 
 #include "fract_ol.h"
 #include "error.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 
@@ -34,7 +32,7 @@ int	ft_atoi(const char *restrict str)
 		str++;
 	while (ft_isdigit(*str))
 		ans = ans * 10 + (*str++ - 48);
-	return (ans * sign);
+	return ((int)(ans * sign));
 }
 
 int	screenshot(const t_data *restrict data)
@@ -42,7 +40,7 @@ int	screenshot(const t_data *restrict data)
 	int					fd;
 	unsigned long long	f_size;
 	unsigned long long	header[7];
-	int					_;
+	size_t				_;
 
 	fd = open("./scr.bmp", 101, 0644);
 	if (fd == -1)

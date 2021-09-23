@@ -10,15 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "fract_ol.h"
 #include "global.h"
-#include <math.h>
 #include "color.h"
-#include <stdio.h>
-#include <complex.h>
 
-int	palette2(FLOAT intensity, FLOAT re,
-		FLOAT im) __attribute__((warn_unused_result));
 int	__recursive_color_compute_newton_pool_extension(
 		const t_params *restrict params, FLOAT real,
 		FLOAT imag) __attribute__((warn_unused_result));
@@ -54,13 +50,13 @@ int	palette2(FLOAT intensity, FLOAT re, FLOAT im)
 	int	root;
 	int	req;
 
-	req = (1 - intensity) * 255;
+	req = (int)((1 - intensity) * 255);
 	if (re > 0)
-		root = atanl(im / re) / PI_FIFTH;
+		root = (int)(atanl(im / re) / PI_FIFTH);
 	else if (im > 0)
-		root = (PI_HALF + atanl(im / -re)) / PI_FIFTH;
+		root = (int)((PI_HALF + atanl(im / -re)) / PI_FIFTH);
 	else
-		root = (PI_HALF + atanl(im / re)) / -PI_FIFTH;
+		root = (int)((PI_HALF + atanl(im / re)) / -PI_FIFTH);
 	if (root == 0)
 		return (req << 16u);
 	else if (root == 1 || root == 2)
@@ -84,7 +80,7 @@ inline int	__recursive_color_compute_newton_pool_extension(
 	register FLOAT	imag_new;
 	register FLOAT	abs;
 
-	req = 0 || (abs = 0);
+	req = (int)(abs = 0);
 	while (req < params->recursion_depth)
 	{
 		dms[0] = real * real - imag * imag;
@@ -102,5 +98,5 @@ inline int	__recursive_color_compute_newton_pool_extension(
 		imag = imag_new;
 		++req;
 	}
-	return (abs);
+	return ((int)abs);
 }

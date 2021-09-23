@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:50:09 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 14:58:27 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 20:37:19 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, const char **argv)
 	ft_mlx_init(data);
 	data->params = &params;
 	mlx_string_put(data->mlx, data->mlx_win, data->res_x / 2, data->res_y / 2,
-		WHITE, "LOADING ...");
+		WHITE, (char *)"LOADING ...");
 	draw_image(0);
 	mlx_loop(data->mlx);
 }
@@ -70,8 +70,8 @@ inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 
 	if (*field_real == NULL || *field_imag == NULL)
 	{
-		*field_real = xmalloc(sizeof(FLOAT) * data->res_x);
-		*field_imag = xmalloc(sizeof(FLOAT) * data->res_y);
+		*field_real = (FLOAT *)xmalloc(sizeof(FLOAT) * data->res_x);
+		*field_imag = (FLOAT *)xmalloc(sizeof(FLOAT) * data->res_y);
 	}
 	i = 1;
 	step = data->params->width / data->res_x;
@@ -97,7 +97,7 @@ void	ft_mlx_init(t_data *restrict data)
 	data->mlx_win = mlx_new_window(data->mlx, data->res_x, data->res_y, WINDOW);
 	if (!data->mlx_win)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
-	data->img = xmalloc(sizeof(t_img));
+	data->img = (t_img *)xmalloc(sizeof(t_img));
 	data->img->img = mlx_new_image(data->mlx, data->res_x, data->res_y);
 	if (!data->img->img)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
@@ -105,8 +105,8 @@ void	ft_mlx_init(t_data *restrict data)
 			->bits_per_pixel, &data->img->line_length, &data->img->endian);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 	mlx_hook(data->mlx_win, 33, 0, ft_close_window, NULL);
-	mlx_hook(data->mlx_win, 04, (1L << 2), ft_mouse_press, NULL);
-	mlx_key_hook(data->mlx_win, ft_button_press, NULL);
+	mlx_hook(data->mlx_win, 04, 1L << 2, (int (*)())(long)ft_mouse_press, NULL);
+	mlx_key_hook(data->mlx_win, (int (*)())(long)ft_button_press, NULL);
 }
 
 int	palette1(FLOAT i)

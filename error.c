@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:34:33 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/22 21:27:16 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 20:53:29 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_message(unsigned int type, const char *restrict parent,
 		type_chr = OK"[ OK ]";
 	else if (type == INFO_TOKEN)
 		type_chr = INFO"[INFO]";
+	else
+		type_chr = "[INTERNAL_TOKEN_ERROR]";
 	printf("%s%s ", type_chr, RESET);
 	if (parent)
 		printf("%s%s:%s ", TERM_WHITE, parent, RESET);
@@ -93,7 +95,7 @@ inline const char	*__strerror_extension(int errorcode)
 	else if (errorcode == K_CLOSED)
 		return ("window closed");
 	else if (errorcode == K_SCREENSHOT)
-		return ("screenshot saved "TERM_GREEN"successfuly"TERM_RESET);
+		return ("screenshot saved " TERM_GREEN "successfuly" TERM_RESET);
 	else if (errorcode == I_PARAM)
 		return ("Try " TERM_WHITE "'./Fract-ol " WARNING "--help" TERM_WHITE
 			"'" RESET " for more information");

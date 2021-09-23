@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:54:35 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/22 23:14:35 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 18:46:50 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		ft_atodl_complex(const char *restrict str, FLOAT *real, FLOAT *imag);
 FLOAT	ft_atodl(const char *restrict str);
 char	*str2double(const char *str,
 			long double *number) __attribute__((warn_unused_result));
-int		ft_atodl_complex(const char *str, long double *real, long double *imag);
 int		ft_atoi_double(const char *restrict str, int *i1, int *i2);
 int		ft_isspace(int __c) __attribute__((warn_unused_result));
 int		ft_isdigit(int __c) __attribute__((warn_unused_result));
@@ -46,7 +45,7 @@ void	set_options(const char **argv, t_data *restrict data,
 int		screenshot(const t_data *restrict data);
 void	*ft_memset(void *s, int c, size_t len);
 
-# define WINDOW			"Fract-ol"
+# define WINDOW			(char *)"Fract-ol"
 
 # define GRADIENT_D		2
 # define GRADIENT_K		4

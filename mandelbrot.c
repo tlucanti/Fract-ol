@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:35:41 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 15:01:20 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 15:43:04 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int	mandelbrot_1(const FLOAT *restrict field_real,
 		{
 			real = field_real[x];
 			imag = field_imag[y];
-			put_pixel(data, x, y, __recursive_color_compute_mandelbrot_extension
-				(data->params, real, imag));
+			put_pixel(data, (int)x, (int)y,
+				__recursive_color_compute_mandelbrot_extension(data->params,
+					real, imag));
 			++y;
 		}
 		++x;
@@ -69,5 +70,5 @@ inline int	__recursive_color_compute_mandelbrot_extension(
 						* RV_LOG_2) / params->recursion_depth));
 		++req;
 	}
-	return (abs * 255 / 2);
+	return ((int)(abs * 255 / 2));
 }

@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:52:53 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/22 20:42:33 by kostya           ###   ########.fr       */
+/*   Updated: 2021/09/23 20:38:10 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_data	*get_data(void)
 	static t_data	*data = NULL;
 
 	if (!data)
-		data = xmalloc(sizeof(t_data));
+		data = (t_data *)xmalloc(sizeof(t_data));
 	return (data);
 }
 
