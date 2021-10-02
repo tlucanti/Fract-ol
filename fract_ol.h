@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:54:35 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 18:46:50 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 17:55:54 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ int		julia_1(const FLOAT *restrict field_real,
 int		newton_pool(const FLOAT *restrict field_real,
 			const FLOAT *restrict field_imag, const t_data *restrict data);
 int		palette1(FLOAT intensity) __attribute__((warn_unused_result));
-int		palette2(FLOAT intensity, FLOAT re,
+int		palette2(FLOAT intensity) __attribute__((warn_unused_result));
+int		palette3(FLOAT intensity) __attribute__((warn_unused_result));
+int		palette4(FLOAT intensity) __attribute__((warn_unused_result));
+int		palette5(FLOAT intensity) __attribute__((warn_unused_result));
+int		palette6(FLOAT intensity, FLOAT re,
 			FLOAT im) __attribute__((warn_unused_result));
+void	swap_palette_forw(const t_data *restrict data);
+void	swap_palette_backw(const t_data *restrict data);
 int		ft_atodl_complex(const char *restrict str, FLOAT *real, FLOAT *imag);
 FLOAT	ft_atodl(const char *restrict str);
 char	*str2double(const char *str,

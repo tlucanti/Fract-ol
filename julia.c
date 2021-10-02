@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:36:33 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 15:42:38 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 17:44:47 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ inline int	__recursive_color_compute_julia_extension(
 		imag_sq = imag * imag;
 		abs = real_sq + imag_sq;
 		if (abs > params->out_radius_sq)
-			return (palette1((FLOAT)req / params->recursion_depth));
+			return (params->palette((FLOAT)req / params->recursion_depth));
 		++req;
 	}
 	return ((int)(abs * 255));

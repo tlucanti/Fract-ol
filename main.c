@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:50:09 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 20:37:19 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 19:36:24 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(int argc, const char **argv)
 	set_options(argv + 1, data, &params);
 	ft_mlx_init(data);
 	data->params = &params;
-	mlx_string_put(data->mlx, data->mlx_win, data->res_x / 2, data->res_y / 2,
-		WHITE, (char *)"LOADING ...");
+	mlx_string_put(data->mlx, data->mlx_win, (int)data->res_x / 2,
+		(int)data->res_y / 2, WHITE, (char *)"LOADING ...");
 	draw_image(0);
 	mlx_loop(data->mlx);
 }
@@ -94,11 +94,13 @@ inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 
 void	ft_mlx_init(t_data *restrict data)
 {
-	data->mlx_win = mlx_new_window(data->mlx, data->res_x, data->res_y, WINDOW);
+	data->mlx_win = mlx_new_window(data->mlx, (int)data->res_x,
+			(int)data->res_y, WINDOW);
 	if (!data->mlx_win)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
 	data->img = (t_img *)xmalloc(sizeof(t_img));
-	data->img->img = mlx_new_image(data->mlx, data->res_x, data->res_y);
+	data->img->img = mlx_new_image(data->mlx, (int)data->res_x,
+			(int)data->res_y);
 	if (!data->img->img)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
 	data->img->addr = (unsigned *)mlx_get_data_addr(data->img->img, &data->img
@@ -107,27 +109,4 @@ void	ft_mlx_init(t_data *restrict data)
 	mlx_hook(data->mlx_win, 33, 0, ft_close_window, NULL);
 	mlx_hook(data->mlx_win, 04, 1L << 2, (int (*)())(long)ft_mouse_press, NULL);
 	mlx_key_hook(data->mlx_win, (int (*)())(long)ft_button_press, NULL);
-}
-
-int	palette1(FLOAT i)
-{
-	if (i < 0.2)
-		return (((int)(i * (32 / 0.2)) << 16) | ((int)(i * (107 - 7) / 0.2 + 7)
-				<< 8) | (int)(i * (203 - 100) / 0.2 + 100));
-	else if (i < 0.4)
-		return (((int)((i - 0.2) * (237 - 32) / 0.2 + 32) << 16) | ((int)((i
-			- 0.2) * (255 - 107) / 0.2 + 107) << 8) | (int)((i - 0.2) * (255
-			- 203) / 0.2 + 203));
-	else if (i < 0.6)
-		return (((int)((i - 0.4) * (255 - 237) / 0.2 + 237) << 16) | ((int)((i
-			- 0.4) * (170 - 255) / 0.2 + 255) << 8) | (int)((i - 0.4) * (-255)
-			/ 0.2 + 255));
-	else if (i < 0.8)
-		return (((int)((i - 0.6) * (-255) / 0.2 + 255) << 16) | ((int)((i - 0.6)
-			* (2 - 170) / 0.2 + 170) << 8));
-	else if (i < 1)
-		return (((int)((i - 0.8) * (7 - 2) / 0.2 + 2) << 8) | (int)((i - 0.8)
-			* (100) / 0.2));
-	else
-		return (-1);
 }

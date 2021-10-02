@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:35:41 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 15:43:04 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 17:43:46 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ inline int	__recursive_color_compute_mandelbrot_extension(
 		imag_sq = imag * imag;
 		abs = real_sq + imag_sq;
 		if (abs > params->out_radius_sq)
-			return (palette1((req + 1 - logl(logl(abs) * 0.5 * RV_LOG_2)
+			return (params->palette((req + 1 - logl(logl(abs) * 0.5 * RV_LOG_2)
 						* RV_LOG_2) / params->recursion_depth));
 		++req;
 	}

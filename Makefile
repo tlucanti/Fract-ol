@@ -6,13 +6,13 @@
 #    By: kostya <kostya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 20:07:05 by kostya            #+#    #+#              #
-#    Updated: 2021/09/23 20:59:02 by kostya           ###   ########.fr        #
+#    Updated: 2021/10/02 19:19:30 by kostya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 NAME		=	Fract-ol
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra
 COPTIONS	=	-O3
 RM			=	rm -f
 LIBRARY		=	./libmlx.a -Imlx -lXext -lX11 -lm -lz
@@ -32,7 +32,10 @@ SRCS		=	\
 				newton_pool	\
 				options		\
 				utils1		\
-				utils
+				utils2		\
+				utils		\
+				palette		\
+				palette1
 # ------------------------------------------------------------------------------
 HDRS		=	\
 				color		\

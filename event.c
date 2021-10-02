@@ -6,31 +6,18 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 21:36:14 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 21:01:51 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 19:13:00 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
-#include "error.h"
 #include "global.h"
 #include "fract_ol.h"
 #include "color.h"
 
-#include "time.h"
-
 void	print_info(const t_data *restrict data);
-int		__ft_button_press_extension(int key_code, t_data *restrict data);
-
-int	ft_close_window(void)
-{
-	t_data	*data;
-
-	data = get_data();
-	mlx_destroy_image(data->mlx, data->img->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	ft_ok("fract-ol", K_CLOSED, "successfully");
-	ft_exit(EXIT_SUCCESS);
-}
+int		__ft_button_press_extension_1(int key_code, t_data *restrict data);
+int		__ft_button_press_extension_2(int key_code, t_data *restrict data);
 
 int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 {
@@ -81,12 +68,12 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 		data->params->recursion_depth = (unsigned int)(data->params
 				->recursion_depth / SCALE);
 	else
-		return (__ft_button_press_extension(key_code, data));
+		return (__ft_button_press_extension_1(key_code, data));
 	draw_image(0);
 	return (0);
 }
 
-inline int	__ft_button_press_extension(int key_code, t_data *restrict data)
+inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 {
 	if (key_code == 105)
 	{
@@ -107,6 +94,18 @@ inline int	__ft_button_press_extension(int key_code, t_data *restrict data)
 		ft_mouse_press(5, (int)data->res_x / 2, (int)data->res_y / 2);
 	else if (key_code == 112)
 		screenshot(data);
+	else
+		return (__ft_button_press_extension_2(key_code, data));
+	draw_image(0);
+	return (0);
+}
+
+inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
+{
+	if (key_code == 65363)
+		swap_palette_forw(data);
+	else if (key_code == 65361)
+		swap_palette_backw(data);
 	else
 		return (0);
 	draw_image(0);

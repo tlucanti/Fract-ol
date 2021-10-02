@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:37:52 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/22 21:33:52 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 18:04:37 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	set_options(const char **restrict argv, t_data *restrict data,
 	data->res_y = 600;
 	__set_options_extension_3(params);
 	if (params->set == 'n')
-		params->palette = (int (*)(FLOAT, ...)) palette2;
+		params->palette = (int (*)(FLOAT, ...)) palette6;
 	while (*(++argv))
 		__set_options_extension_1(*argv, params, data);
 }
@@ -115,14 +115,22 @@ inline void	__set_options_extension_4(const char *restrict argv,
 {
 	if (argv[3] != 0)
 		ft_info_exit("fract-ol", E_SCHEME_INP, argv + 2);
-	else if (argv[2] != '1' && params->set == 'm')
-		ft_warning("fract-ol", W_SHEME_M, "defaulting to 1");
-	else if (argv[2] != '1' && params->set == 'j')
-		ft_warning("fract-ol", W_SHEME_J, "defaulting to 1");
-	else if (argv[2] != '1' && argv[2] != '2' && params->set == 'n')
-		ft_warning("fract-ol", W_SHEME_N, "defaulting to 2");
-	else if (argv[2] == '1' && params->set == 'n')
+	else if (argv[2] == '1' && !argv[3])
 		params->palette = (int (*)(FLOAT, ...)) palette1;
-	else if (argv[2] == '2' && params->set == 'n')
+	else if (argv[2] == '2' && !argv[3])
 		params->palette = (int (*)(FLOAT, ...)) palette2;
+	else if (argv[2] == '3' && !argv[3])
+		params->palette = (int (*)(FLOAT, ...)) palette3;
+	else if (argv[2] == '4' && !argv[3])
+		params->palette = (int (*)(FLOAT, ...)) palette4;
+	else if (argv[2] == '5' && !argv[3])
+		params->palette = (int (*)(FLOAT, ...)) palette5;
+	else if (argv[2] == '6' && !argv[3] && params->set == 'n')
+		params->palette = (int (*)(FLOAT, ...)) palette6;
+	else if (params->set == 'm')
+		ft_warning("fract-ol", W_SHEME_M, "defaulting to 1");
+	else if (params->set == 'j')
+		ft_warning("fract-ol", W_SHEME_J, "defaulting to 1");
+	else
+		ft_warning("fract-ol", W_SHEME_N, "defaulting to 6");
 }

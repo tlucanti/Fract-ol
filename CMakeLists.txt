@@ -7,36 +7,36 @@ project(Fract_ol)
 # compile flags
 # set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 # (to speed up project)
- set(CMAKE_C_FLAGS "-O0")# -ffast-math")
+set(CMAKE_C_FLAGS "-O0")# -ffast-math")
 
 set(CMAKE_C_STANDARD 99)
 
 add_executable(Fract_ol
-        error.c
         error1.c
         error2.c
-        error.h
-
+        error.c
         event.c
-        event.h
-
-        memory.c
-        memory.h
-
-        julia.c
-        mandelbrot.c
-        newton_pool.c
-
-        main.c
-        options.c
         ft_atodl.c
         ft_memcmp.c
         ft_memset.c
-        utils.c
+        julia.c
+        main.c
+        mandelbrot.c
+        memory.c
+        newton_pool.c
+        options.c
         utils1.c
+        utils2.c
+        utils.c
+        palette.c
+        palette1.c
+        color.h
+        error.h
+        event.h
         fract_ol.h
         global.h
-        color.h
+        memory.h
+        time.h
         )
 link_directories(/usr/local/lib/)
 target_link_libraries(Fract_ol

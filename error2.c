@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 21:33:30 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 14:48:53 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 19:25:58 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ inline void	__print_help_message_extension_1(void)
 		"\t\t\t\tnumber) for compution\n"
 		"\t\t\t\tif parameter is not set - it defaults to 300\n"
 		"\n\t-s[SCHEME]\t\tparameter set colorscheme for fractal colorizing\n"
-		"\t\t\t\t[SCHEME should be 1 or 2\n"
+		"\t\t\t\t[SCHEME should be integer from 1 to 6\n"
 		"\t\t\t\tif parameter is not set - it defaults to 1 for julia and\n"
-		"\t\t\t\tmandelbrot, and to 2 for newton pool\n"
+		"\t\t\t\tmandelbrot, and to 6 for newton pool\n"
 		);
 	__print_help_message_extension_2();
 }

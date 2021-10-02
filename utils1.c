@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 20:02:31 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/22 23:06:59 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 18:05:18 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,46 @@ int	ft_atodl_complex(const char *str, long double *real, long double *imag)
 	if ((__im && *str == 'i') || (!__im && *str != 'i'))
 		return (1);
 	return (0);
+}
+
+void	swap_palette_forw(const t_data *restrict data)
+{
+	if ((size_t)data->params->palette == (size_t)palette1)
+		data->params->palette = (int (*)(FLOAT, ...)) palette2;
+	else if ((size_t)data->params->palette == (size_t)palette2)
+		data->params->palette = (int (*)(FLOAT, ...)) palette3;
+	else if ((size_t)data->params->palette == (size_t)palette3)
+		data->params->palette = (int (*)(FLOAT, ...)) palette4;
+	else if ((size_t)data->params->palette == (size_t)palette4)
+		data->params->palette = (int (*)(FLOAT, ...)) palette5;
+	else if ((size_t)data->params->palette == (size_t)palette5)
+	{
+		if (data->params->set == 'n')
+			data->params->palette = (int (*)(FLOAT, ...)) palette6;
+		else
+			data->params->palette = (int (*)(FLOAT, ...)) palette1;
+	}
+	else
+		data->params->palette = (int (*)(FLOAT, ...)) palette1;
+}
+
+void	swap_palette_backw(const t_data *restrict data)
+{
+	if ((size_t)data->params->palette == (size_t)palette1)
+	{
+		if (data->params->set == 'n')
+			data->params->palette = (int (*)(FLOAT, ...)) palette6;
+		else
+			data->params->palette = (int (*)(FLOAT, ...)) palette5;
+	}
+	else if ((size_t)data->params->palette == (size_t)palette2)
+		data->params->palette = (int (*)(FLOAT, ...)) palette1;
+	else if ((size_t)data->params->palette == (size_t)palette3)
+		data->params->palette = (int (*)(FLOAT, ...)) palette2;
+	else if ((size_t)data->params->palette == (size_t)palette4)
+		data->params->palette = (int (*)(FLOAT, ...)) palette3;
+	else if ((size_t)data->params->palette == (size_t)palette5)
+		data->params->palette = (int (*)(FLOAT, ...)) palette4;
+	else
+		data->params->palette = (int (*)(FLOAT, ...)) palette5;
 }

@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 20:52:51 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 18:39:11 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 19:13:49 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #  define NULL THANKS_NORMINETTE_NICE_WORK_NOW_I_NEED_TO_DO_THIS_TO_FIX_MY_ERROR
 # endif
 # define FLOAT long double
+
+# define ONE_SIXTH	0.16666666666666666L
+# define ONE_NINETH	0.11111111111111111L
 
 typedef FLOAT	t_float;
 

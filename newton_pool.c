@@ -6,7 +6,7 @@
 /*   By: kostya <kostya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:59:38 by kostya            #+#    #+#             */
-/*   Updated: 2021/09/23 14:56:10 by kostya           ###   ########.fr       */
+/*   Updated: 2021/10/02 17:28:47 by kostya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	newton_pool(const FLOAT *restrict field_real,
 	return (0);
 }
 
-int	palette2(FLOAT intensity, FLOAT re, FLOAT im)
+int	palette6(FLOAT intensity, FLOAT re, FLOAT im)
 {
 	int	root;
 	int	req;
