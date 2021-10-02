@@ -18,6 +18,7 @@ Fract-ol shows you depths of famous fractals - Mandelbrot set, Julia set, Newton
 - zoom into center of screen: `+` and `-` buttons
 - mooving position by numpad arrows
 - upscaling and downscaling iterations: `up` and `down` keys
+- changing color palettes: `left` ans `right` keys
 - changing set parameters: `w` `a` `s` `d` buttons
 - making screenshot: `p`
 - print information about position and set parameters: `i`
