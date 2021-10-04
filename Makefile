@@ -15,7 +15,8 @@ NAME		=	Fract-ol
 CFLAGS		=	-Wall -Wextra
 COPTIONS	=	-O3
 RM			=	rm -f
-LIBRARY		=	./libmlx.a -Imlx -lXext -lX11 -lm -lz
+# LIBRARY		=	./libmlx.a -Imlx -lXext -lX11 -lm -lz
+LIBRARY		=	./libmlx.a -lmlx -framework OpenGL -framework AppKit
 # ------------------------------------------------------------------------------
 SRCS		=	\
 				error1		\
@@ -35,7 +36,8 @@ SRCS		=	\
 				utils2		\
 				utils		\
 				palette		\
-				palette1
+				palette1	\
+				mlx_get_screen_size
 # ------------------------------------------------------------------------------
 HDRS		=	\
 				color		\
@@ -46,11 +48,19 @@ HDRS		=	\
 				memory		\
 				time
 # ------------------------------------------------------------------------------
-MLX_DIR		=	mlxlinux
+OS			=	$(shell uname -s | tr A-Z a-z)
+MLX_DIR :=
+ifeq ($(OS), linux)
+	MLX_DIR		+=	mlxlinux
+endif
+ifeq ($(OS), darwin)
+	MLX_DIR		+=	mlxosx
+endif
 OBJS_DIR	=	objects
 OBJS		=	${SRCS:=.o}
 DEPS		=	${HDRS:=.h}
 LIBFT		=
+
 
 .c.o:
 	${CC}		${CFLAGS} ${COPTIONS} -c $< -o ${<:.c=.o}
@@ -89,11 +99,18 @@ apt-install:
 	${MAKE}		install
 
 # ------------------------------------------------------------------------------
+ifeq (${OS}, linux)
 install:
-	sudo ${MAKE} -C ${MLX_DIR}
-	sudo cp		${MLX_DIR}/libmlx.a /usr/local/lib/libmlx.a
-	sudo cp		${MLX_DIR}/mlx.h /usr/include/mlx.h
-
+	sudo		${MAKE} -C ${MLX_DIR}
+	sudo		cp		${MLX_DIR}/libmlx.a /usr/local/lib/libmlx.a
+	sudo		cp		${MLX_DIR}/mlx.h /usr/include/mlx.h
+endif
+ifeq ($(OS), darwin)
+install:
+	chmod		-R 777 ${MLX_DIR}
+	echo mlx_dir: ${MLX_DIR}
+	${MAKE}		-C ${MLX_DIR}
+endif
 # ------------------------------------------------------------------------------
 re:				fclean all
 

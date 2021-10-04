@@ -12,8 +12,12 @@
 
 #ifndef MEMORY_H
 # define MEMORY_H
-
-# include <malloc.h>
+# ifdef __linux__
+#  include <malloc.h>
+# endif
+# ifdef __APPLE__
+#  include <stdlib.h>
+# endif
 
 void	*xmalloc(size_t size) __attribute__((malloc, warn_unused_result));
 
