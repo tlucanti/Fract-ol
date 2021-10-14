@@ -27,7 +27,6 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 
 	data = get_data();
 	mouse_y = data->res_y * MOUSE_CORRECT + mouse_y;
-	printf("mouse: %d (%d %d)\n", key_code, mouse_x, mouse_y);
 	x = data->params->center_real + data->params->width
 		/ (FLOAT)data->res_x * (mouse_x - (FLOAT)data->res_x / 2);
 	y = data->params->center_imag + data->params->width
@@ -51,7 +50,6 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 
 int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 {
-	printf("key: %d\n", key_code);
 	t_data * restrict data;
 	data = get_data();
 	if (key_code == KEY_ESC)
@@ -96,10 +94,7 @@ inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 	else if (key_code == MINUS_BUTTON)
 		ft_mouse_press(5, (int)data->res_x / 2,	(int)data->res_y * OSX_KEY / 2);
 	else if (key_code == P_BUTON)
-	{
-		printf("screenshot\n");
 		screenshot(data);
-	}
 	else
 		return (__ft_button_press_extension_2(key_code, data));
 	draw_image(0);

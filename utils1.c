@@ -44,7 +44,6 @@ int	screenshot(const t_data *restrict data)
 	size_t				_;
 
 	fd = open("./scr.bmp", O_WRONLY | O_CREAT, 0644);
-	printf("screen 2\n");
 	if (fd == -1)
 	{
 		ft_perror("fract-ol", E_SCREENSHOT, strerror(errno));
