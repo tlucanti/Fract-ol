@@ -15,8 +15,7 @@ NAME		=	Fract-ol
 CFLAGS		=	-Wall -Wextra
 COPTIONS	=	-O3
 RM			=	rm -f
-# LIBRARY		=	./libmlx.a -Imlx -lXext -lX11 -lm -lz
-LIBRARY		=	./libmlx.a -lmlx -framework OpenGL -framework AppKit
+LIBRARY		:=
 # ------------------------------------------------------------------------------
 SRCS		=	\
 				error1		\
@@ -50,17 +49,20 @@ HDRS		=	\
 # ------------------------------------------------------------------------------
 OS			=	$(shell uname -s | tr A-Z a-z)
 MLX_DIR :=
-ifeq ($(OS), linux)
-	MLX_DIR		+=	mlxlinux
-endif
-ifeq ($(OS), darwin)
-	MLX_DIR		+=	mlxosx
-endif
 OBJS_DIR	=	objects
 OBJS		=	${SRCS:=.o}
 DEPS		=	${HDRS:=.h}
 LIBFT		=
+LIBMLX		=	libmlx.a
 
+ifeq ($(OS), linux)
+	MLX_DIR		+=	mlxlinux
+	LIBRARY		+=	-Imlx -lXext -lX11 -lm -lz
+endif
+ifeq ($(OS), darwin)
+	MLX_DIR		+=	mlxosx
+	LIBRARY		+=	-lmlx -framework OpenGL -framework AppKit -lz
+endif
 
 .c.o:
 	${CC}		${CFLAGS} ${COPTIONS} -c $< -o ${<:.c=.o}
@@ -68,7 +70,7 @@ LIBFT		=
 $(NAME):		${DEPS} ${OBJS}
 	${MAKE}		-C ${MLX_DIR}
 	cp			${MLX_DIR}/libmlx.a .
-	${CC}		-o ${NAME} ${CFLAGS} ${COPTIONS} ${OBJS} ${LIBFT} ${LIBRARY} 
+	${CC}		-o ${NAME} ${CFLAGS} ${COPTIONS} ${OBJS} ${LIBFT} ${LIBRARY} ${LIBMLX} 
 
 # ------------------------------------------------------------------------------
 all:			${NAME}
@@ -90,29 +92,26 @@ fclean:			clean
 	${RM}		${NAME}
 
 # ------------------------------------------------------------------------------
-apt-install:
+ifeq (${OS}, linux)
+install:
 	sudo apt	update
 	sudo apt	install gcc -y
 	sudo apt	install xorg -y
 	sudo apt	install libxext-dev -y
 	sudo apt	install libbsd-dev -y
 	${MAKE}		install
-
-# ------------------------------------------------------------------------------
-ifeq (${OS}, linux)
-install:
 	sudo		${MAKE} -C ${MLX_DIR}
 	sudo		cp		${MLX_DIR}/libmlx.a /usr/local/lib/libmlx.a
 	sudo		cp		${MLX_DIR}/mlx.h /usr/include/mlx.h
 endif
 ifeq ($(OS), darwin)
 install:
-	chmod		-R 777 ${MLX_DIR}
-	echo mlx_dir: ${MLX_DIR}
+	brew		install xorgrgb
+	chmod		-R 731 ${MLX_DIR}
 	${MAKE}		-C ${MLX_DIR}
 endif
 # ------------------------------------------------------------------------------
 re:				fclean all
 
 # ------------------------------------------------------------------------------
-.PHONY:			all clean fclean apt-install install re
+.PHONY:			all f clean fclean install re

@@ -60,6 +60,7 @@ inline void	__set_options_extension_1(const char *restrict argv,
 	{
 		if (ft_atoi_double(argv + 2, (int *)&data->res_x, (int *)&data->res_y))
 			ft_info_exit("fract-ol", E_RES_INP, argv + 2);
+		printf("%d %d\n", data->res_x, data->res_y);
 		mlx_get_screen_size(data->mlx, (int *)&max_x, (int *)&max_y);
 		if (data->res_x > max_x || data->res_y > max_y)
 			ft_info_exit("fract-ol", E_RES_LIM, argv + 2);

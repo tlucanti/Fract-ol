@@ -14,6 +14,7 @@
 #include "error.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 int	ft_atoi(const char *restrict str)
 {
@@ -42,9 +43,13 @@ int	screenshot(const t_data *restrict data)
 	unsigned long long	header[7];
 	size_t				_;
 
-	fd = open("./scr.bmp", 101, 0644);
+	fd = open("./scr.bmp", O_WRONLY | O_CREAT, 0644);
+	printf("screen 2\n");
 	if (fd == -1)
+	{
+		ft_perror("fract-ol", E_SCREENSHOT, strerror(errno));
 		return (1);
+	}
 	ft_memset(header, 0, 56);
 	f_size = 14 + 40 + (data->res_x * data->res_y) * 4;
 	header[0x00] = 0x4d42u | f_size << 16u;

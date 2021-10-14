@@ -41,14 +41,15 @@ void	print_help_message(void) __attribute__((noreturn));
 # define E_UNREC_OPT	(-8)
 # define E_REQ_LIM		(-9)
 # define E_SCHEME_INP	(-10)
+# define E_SCREENSHOT	(-11)
 
-# define W_SHEME_M		(-11)
-# define W_SHEME_J		(-12)
-# define W_SHEME_N		(-13)
+# define W_SHEME_M		(-12)
+# define W_SHEME_J		(-13)
+# define W_SHEME_N		(-14)
 
-# define K_CLOSED		(-14)
-# define K_SCREENSHOT	(-15)
+# define K_CLOSED		(-15)
+# define K_SCREENSHOT	(-16)
 
-# define I_PARAM		(-16)
+# define I_PARAM		(-17)
 
 #endif

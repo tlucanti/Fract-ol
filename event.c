@@ -26,18 +26,20 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 	FLOAT	y;
 
 	data = get_data();
+	mouse_y = data->res_y * MOUSE_CORRECT + mouse_y;
+	printf("mouse: %d (%d %d)\n", key_code, mouse_x, mouse_y);
 	x = data->params->center_real + data->params->width
 		/ (FLOAT)data->res_x * (mouse_x - (FLOAT)data->res_x / 2);
 	y = data->params->center_imag + data->params->width
 		* ((FLOAT)data->res_y / (FLOAT)data->res_x) / (FLOAT)data->res_y
 		* (mouse_y - (FLOAT)data->res_y / 2);
-	if (key_code == 4)
+	if (key_code == MOUSEWHEELIN)
 	{
 		data->params->center_imag = y - (y - data->params->center_imag) * SCALE;
 		data->params->center_real = x - (x - data->params->center_real) * SCALE;
 		data->params->width *= SCALE;
 	}
-	else if (key_code == 5)
+	else if (key_code == MOUSEWHEELOUT)
 	{
 		data->params->center_real = x - (x - data->params->center_real) / SCALE;
 		data->params->center_imag = y - (y - data->params->center_imag) / SCALE;
@@ -49,6 +51,7 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 
 int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 {
+	printf("key: %d\n", key_code);
 	t_data * restrict data;
 	data = get_data();
 	if (key_code == KEY_ESC)
@@ -75,25 +78,28 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 
 inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 {
-	if (key_code == 105)
+	if (key_code == I_BUTTON)
 	{
 		print_info(data);
 		return (0);
 	}
-	else if (key_code == 119)
+	else if (key_code == W_BUTTON)
 		data->params->c_imag *= 1.1;
-	else if (key_code == 115)
+	else if (key_code == S_BUTTON)
 		data->params->c_imag /= 1.1;
-	else if (key_code == 100)
+	else if (key_code == D_BUTTON)
 		data->params->c_real *= 1.002;
-	else if (key_code == 97)
+	else if (key_code == A_BUTTON)
 		data->params->c_real /= 1.002;
-	else if (key_code == 45)
-		ft_mouse_press(4, (int)data->res_x / 2, (int)data->res_y / 2);
-	else if (key_code == 61)
-		ft_mouse_press(5, (int)data->res_x / 2, (int)data->res_y / 2);
-	else if (key_code == 112)
+	else if (key_code == PLUS_BUTTON)
+		ft_mouse_press(4, (int)data->res_x / 2, (int)data->res_y * OSX_KEY / 2);
+	else if (key_code == MINUS_BUTTON)
+		ft_mouse_press(5, (int)data->res_x / 2,	(int)data->res_y * OSX_KEY / 2);
+	else if (key_code == P_BUTON)
+	{
+		printf("screenshot\n");
 		screenshot(data);
+	}
 	else
 		return (__ft_button_press_extension_2(key_code, data));
 	draw_image(0);
@@ -102,9 +108,9 @@ inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 
 inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
 {
-	if (key_code == 65363)
+	if (key_code == KEY_RIGHT)
 		swap_palette_forw(data);
-	else if (key_code == 65361)
+	else if (key_code == KEY_LEFT)
 		swap_palette_backw(data);
 	else
 		return (0);

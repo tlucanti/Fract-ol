@@ -20,6 +20,7 @@ int	palette4(FLOAT i)
 ** MatPlotLib inferno palette
 */
 {
+	i = i * (i > 0);
 	if (i < ONE_NINETH)
 		return ((int)(198 * i + 0) << 16 | (int)(99 * i + 0) << 8 | (int)(477
 			* i + 4));

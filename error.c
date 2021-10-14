@@ -80,15 +80,17 @@ static const char	*ft_strerror(int errorcode)
 		return ("recursion depth cannot be negative");
 	else if (errorcode == E_SCHEME_INP)
 		return ("invalid color sheme format");
-	else if (errorcode == W_SHEME_M)
-		return ("scheme is not suported for mandelbrot");
+	else if (errorcode == E_SCREENSHOT)
+		return ("cannot make screenshot");
 	else
 		return (__strerror_extension(errorcode));
 }
 
 inline const char	*__strerror_extension(int errorcode)
 {
-	if (errorcode == W_SHEME_J)
+	if (errorcode == W_SHEME_M)
+		return ("scheme is not suported for mandelbrot");
+	else if (errorcode == W_SHEME_J)
 		return ("scheme is not suported for julia");
 	else if (errorcode == W_SHEME_N)
 		return ("scheme is not suported for newton pool");

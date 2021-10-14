@@ -1,10 +1,9 @@
-#import <AppKit/NSScreen.h>
+#ifdef __APPLE__
 
-void    mlx_get_screen_size(int *width, int *height);
+void    mlx_get_screen_size(__attribute__((unused))void *mlx, int *width, int *height)	
 {
-    NSRect disp;
-// 
-    // disp = [[NSScreen mainScreen] frame];
-    // *height = (int)disp.size.height;
-    // *width = (int)disp.size.width;
+	*width = 5120;
+	*height = 2880;
 }
+		
+#endif
