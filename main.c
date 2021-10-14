@@ -41,10 +41,10 @@ int	main(int argc, const char **argv)
 
 void	draw_image(int do_free)
 {
-	static FLOAT	*field_real = NULL;
-	static FLOAT	*field_imag = NULL;
+	static FLOAT		*field_real = NULL;
+	static FLOAT		*field_imag = NULL;
+	t_data	*restrict	data;
 
-	t_data * restrict data;
 	data = get_data();
 	if (do_free)
 	{

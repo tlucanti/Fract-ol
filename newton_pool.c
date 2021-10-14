@@ -75,20 +75,20 @@ inline int	__recursive_color_compute_newton_pool_extension(
 	const t_params *restrict params, FLOAT real, FLOAT imag)
 {
 	unsigned short	req;
-	register FLOAT	dms[3];
+	register FLOAT	d[3];
 	register FLOAT	real_new;
 	register FLOAT	imag_new;
 	register FLOAT	abs;
 
-	req = (int)(abs = 0);
+	req = 0;
+	abs = 0;
 	while (req < params->recursion_depth)
 	{
-		dms[0] = real * real - imag * imag;
-		dms[1] = 2 * real * imag;
-		dms[2] = powl(real * real + imag * imag, -4);
-		real_new = 0.8 * real + 0.2 * dms[2] * (dms[0] * dms[0] - dms[1]
-				* dms[1]);
-		imag_new = 0.8 * imag - 0.4 * dms[2] * dms[1] * dms[0];
+		d[0] = real * real - imag * imag;
+		d[1] = 2 * real * imag;
+		d[2] = powl(real * real + imag * imag, -4);
+		real_new = 0.8 * real + 0.2 * d[2] * (d[0] * d[0] - d[1] * d[1]);
+		imag_new = 0.8 * imag - 0.4 * d[2] * d[1] * d[0];
 		abs = (real - real_new) * (real - real_new) + (imag - imag_new)
 			* (imag - imag_new);
 		if (abs < EPS)

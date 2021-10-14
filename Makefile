@@ -12,7 +12,7 @@
 
 CC			=	gcc
 NAME		=	Fract-ol
-CFLAGS		=	-Wall -Wextra
+CFLAGS		=	-Wall -Wextra -Werror
 COPTIONS	=	-O3
 RM			=	rm -f
 LIBRARY		:=
@@ -90,6 +90,7 @@ clean:
 # ------------------------------------------------------------------------------
 fclean:			clean
 	${RM}		${NAME}
+	${RM}		${LIBMLX}
 
 # ------------------------------------------------------------------------------
 ifeq (${OS}, linux)

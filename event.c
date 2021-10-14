@@ -50,7 +50,8 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 
 int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 {
-	t_data * restrict data;
+	t_data	*restrict data;
+
 	data = get_data();
 	if (key_code == KEY_ESC)
 		ft_close_window();
@@ -92,7 +93,7 @@ inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 	else if (key_code == PLUS_BUTTON)
 		ft_mouse_press(4, (int)data->res_x / 2, (int)data->res_y * OSX_KEY / 2);
 	else if (key_code == MINUS_BUTTON)
-		ft_mouse_press(5, (int)data->res_x / 2,	(int)data->res_y * OSX_KEY / 2);
+		ft_mouse_press(5, (int)data->res_x / 2, (int)data->res_y * OSX_KEY / 2);
 	else if (key_code == P_BUTON)
 		screenshot(data);
 	else
