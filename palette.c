@@ -19,6 +19,7 @@ int	palette1(FLOAT i)
 ** Default Ultra Fractal (or Wikipedia) color palette
 */
 {
+	i = i * (i > 0);
 	if (i < 0.2)
 		return (((int)(i * (32 / 0.2)) << 16) | ((int)(i * (107 - 7) / 0.2 + 7)
 				<< 8) | (int)(i * (203 - 100) / 0.2 + 100));
@@ -43,6 +44,7 @@ int	palette2(FLOAT i)
 ** RGB spectrum palette
 */
 {
+	i = i * (i > 0);
 	if (i < ONE_SIXTH)
 		return (0xff0000 | (int)(255 * 6 * i) << 8);
 	else if (i < 2 * ONE_SIXTH)
@@ -62,6 +64,7 @@ int	palette3(FLOAT i)
 ** MatPotLib Viridis palette
 */
 {
+	i = i * (i > 0);
 	if (i < ONE_NINETH)
 		return ((int)(36 * i + 68) << 16 | (int)(315 * i + 1) << 8 | (int)(297
 			* i + 84));

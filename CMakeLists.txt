@@ -38,11 +38,13 @@ add_executable(Fract_ol
         memory.h
         time.h
         )
-link_directories(/usr/local/lib/)
-target_link_libraries(Fract_ol
-        Xext
-        X11             # for mlx
-        m               # math library
-        pthread         # for multithreading
-        /media/kostya/Data/CLion/Fract-ol/mlxlinux/libmlx.a
+#link_directories(/usr/local/lib/)
+target_link_libraries(Fract_ol 
+#        Xext
+#        X11             # for mlx
+#        m               # math library
+#        pthread         # for multithreading
+#        /media/kostya/Data/CLion/Fract-ol/mlxlinux/libmlx.a
+
+        mlx -framework OpenGL -framework AppKit z
         )
