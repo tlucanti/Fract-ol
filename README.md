@@ -3,9 +3,10 @@
 
 Fract-ol shows you depths of famous fractals - Mandelbrot set, Julia set, Newton pool set in real time. You can zoom into the fractal almost infinitely.
 
-![img](https://github.com/antikostya/Fract-ol/blob/master/images/scr.bmp?raw=true)
+![img](https://github.com/antikostya/Fract-ol/blob/master/img/scr.jpg?raw=true)
 
 ## Features
+- Linux and OSX support
 - Mandelbrot set fractal
 - Julia set fractal
 - Newton pool fractal
