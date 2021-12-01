@@ -16,8 +16,8 @@
 # include <math.h>
 # include <stddef.h>
 
-# include "mlxlinux/mlx.h"
-# include "global.h"
+# include "../inc/mlx.h"
+# include "../inc/global.h"
 
 int		main(int argc, const char **argv);
 void	ft_mlx_init(t_data *restrict data);
