@@ -75,7 +75,7 @@ inline int	__recursive_color_compute_newton_pool_extension(
 	const t_params *restrict params, FLOAT real, FLOAT imag)
 {
 	unsigned short	req;
-	register FLOAT	d[3];
+	FLOAT	d[3];
 	register FLOAT	real_new;
 	register FLOAT	imag_new;
 	register FLOAT	abs;

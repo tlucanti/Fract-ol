@@ -5,5 +5,7 @@ obj
 .idea
 Fract-ol
 libmlx.a
-mlxlinux/*.o
-mlxlinux/*.a
+*.o
+*.a
+*.so
+*.swp

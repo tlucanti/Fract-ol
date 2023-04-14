@@ -25,13 +25,13 @@ Fract-ol shows you depths of famous fractals - Mandelbrot set, Julia set, Newton
 - print information about position and set parameters: `i`
 
 ## Dependencies
-you will need these packages: `make gcc xorg libxext-dev libbsd-dev`
+you will need these packages: `make gcc clang xorg libxext-dev libbsd-dev`
 
 ## Installation
 ### Linux
 run in the root of repository to install dependence packages
 ```
-sudo make apt-install
+sudo make install
 ```
 run in the root of repository to build project
 ```

@@ -87,7 +87,7 @@ inline void	__print_help_message_extension_2(void)
 		"./Fract-ol j -c4e-5i+3e-3 -R800+600 -w1e-3 -d\n"
 		"\n"
 		"Full information avaliable in:\n"
-		"\t<https://github.com/antikostya/Fract-ol>\n"
+		"\t<https://github.com/tlucanti/Fract-ol>\n"
 		"\n"
 		"(Fract-ol v0.2)\t\ttlucanti\n"
 		);

@@ -20,8 +20,8 @@ LIBRARY		=
 OBJS_DIR	=	obj
 INCLUDE_DIR	=	inc
 SRCS_DIR	=	src
-LIBGNL		=	
-LIBFT		=	
+LIBGNL		=
+LIBFT		=
 LIBMLX		=	libmlx.a
 # ------------------------------- project sorces -------------------------------
 SRCS		=	\
@@ -89,7 +89,7 @@ libmlx_install:
 # ------------------------------------------------------------------------------
 $(NAME):		${OBJS} ${DEPS} ${LIBMLX}
 	${MAKE}		-C ${MLX_DIR}
-	${CC}		-o ${NAME} ${CFLAGS} ${COPTIONS} ${OBJS} ${LIBRARY} ${LIBMLX} 
+	${CC}		-o ${NAME} ${CFLAGS} ${COPTIONS} ${OBJS} ${LIBRARY} ${LIBMLX}
 
 
 # ------------------------------------------------------------------------------
@@ -112,12 +112,10 @@ fclean:			clean
 # ------------------------------------------------------------------------------
 ifeq (${OS}, linux)
 install:
-	sudo apt	update
 	sudo apt	install gcc -y
 	sudo apt	install xorg -y
 	sudo apt	install libxext-dev -y
 	sudo apt	install libbsd-dev -y
-	${MAKE}		install
 	sudo		${MAKE} -C ${MLX_DIR}
 	sudo		cp		${MLX_DIR}/libmlx.a /usr/local/lib/libmlx.a
 	sudo		cp		${MLX_DIR}/mlx.h /usr/include/mlx.h
@@ -132,7 +130,7 @@ endif
 # ------------------------------------------------------------------------------
 ${OBJS_DIR}:
 	mkdir		-p ${OBJS_DIR}
-	
+
 # ------------------------------------------------------------------------------
 re:				fclean all
 

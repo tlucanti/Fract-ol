@@ -50,7 +50,7 @@ inline int	__recursive_color_compute_mandelbrot_extension(
 	register FLOAT	real_sq;
 	register FLOAT	imag_sq;
 	register FLOAT	abs;
-	register FLOAT	points[2];
+	FLOAT	points[2];
 
 	points[0] = real;
 	points[1] = imag;
