@@ -1,1 +1,0 @@
-../mlxlinux/mlx.h

@@ -13,6 +13,9 @@
 #include "error.h"
 #include "color.h"
 
+#include <stdio.h>
+#include <string.h>
+
 static const char	*ft_strerror(
 						int errorcode) __attribute__((warn_unused_result));
 const char			*__strerror_extension(

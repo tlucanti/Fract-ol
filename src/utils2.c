@@ -11,18 +11,16 @@
 /* ************************************************************************** */
 
 #include "global.h"
-#include "color.h"
-#include "fract_ol.h"
 #include "error.h"
-#include <stdio.h>
+
+#include <stdlib.h>
 
 int	ft_close_window(void)
 {
 	t_data	*data;
 
 	data = get_data();
-	mlx_destroy_image(data->mlx, data->img->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
+	gui_destroy(&data->window);
 	ft_ok("fract-ol", K_CLOSED, "successfully");
 	ft_exit(EXIT_SUCCESS);
 }

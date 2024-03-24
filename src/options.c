@@ -53,16 +53,10 @@ void	set_options(const char **restrict argv, t_data *restrict data,
 inline void	__set_options_extension_1(const char *restrict argv,
 	t_params *restrict params, t_data *restrict data)
 {
-	unsigned int	max_x;
-	unsigned int	max_y;
-
 	if (!ft_memcmp(argv, "-R", 2))
 	{
 		if (ft_atoi_double(argv + 2, (int *)&data->res_x, (int *)&data->res_y))
 			ft_info_exit("fract-ol", E_RES_INP, argv + 2);
-		mlx_get_screen_size(data->mlx, (int *)&max_x, (int *)&max_y);
-		if (data->res_x > max_x || data->res_y > max_y)
-			ft_info_exit("fract-ol", E_RES_LIM, argv + 2);
 	}
 	else if (!ft_memcmp(argv, "-c", 2))
 	{

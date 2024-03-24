@@ -9,3 +9,6 @@ libmlx.a
 *.a
 *.so
 *.swp
+.cache
+compile_commands.json
+scr.bmp

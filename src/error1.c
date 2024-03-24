@@ -15,6 +15,8 @@
 #include "event.h"
 #include "global.h"
 
+#include <stdlib.h>
+
 void	ft_message(unsigned int type, const char *parent, int errorcode,
 			const char *restrict message);
 
@@ -45,7 +47,7 @@ inline void	ft_ok(const char *restrict parent, int errorcode,
 void	ft_exit(int status)
 {
 	draw_image(1);
-	free(get_data()->img);
 	free(get_data());
+	gui_finalize();
 	exit(status);
 }

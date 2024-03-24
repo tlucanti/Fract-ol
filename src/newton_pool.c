@@ -20,7 +20,7 @@ int	__recursive_color_compute_newton_pool_extension(
 		FLOAT imag) __attribute__((warn_unused_result));
 
 int	newton_pool(const FLOAT *restrict field_real,
-	const FLOAT *restrict field_imag, const t_data *restrict data)
+	const FLOAT *restrict field_imag, t_data *restrict data)
 {
 	register FLOAT	real;
 	register FLOAT	imag;

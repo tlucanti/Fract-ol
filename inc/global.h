@@ -13,46 +13,33 @@
 #ifndef GLOBAL_H
 # define GLOBAL_H
 
-# define THANKS_NORMINETTE_NICE_WORK_NOW_I_NEED_TO_DO_THIS_TO_FIX_MY_ERROR 0
-# ifndef NULL
-#  define NULL THANKS_NORMINETTE_NICE_WORK_NOW_I_NEED_TO_DO_THIS_TO_FIX_MY_ERROR
-# endif
 # define FLOAT long double
 
 # define ONE_SIXTH	0.16666666666666666L
 # define ONE_NINETH	0.11111111111111111L
 
+# include <guilib.h>
+
 typedef FLOAT	t_float;
 
 typedef struct s_params
 {
-	char			set;
-	FLOAT			center_real;
-	FLOAT			center_imag;
-	FLOAT			width;
-	FLOAT			out_radius_sq;
-	FLOAT			c_real;
-	FLOAT			c_imag;
+	char		set;
+	FLOAT		center_real;
+	FLOAT		center_imag;
+	FLOAT		width;
+	FLOAT		out_radius_sq;
+	FLOAT		c_real;
+	FLOAT		c_imag;
 	unsigned int	recursion_depth;
-	int				(*palette)(t_float, ...);
+	int		(*palette)(t_float, ...);
 }	t_params;
-
-typedef struct s_img
-{
-	void			*img;
-	unsigned int	*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-}	t_img;
 
 typedef struct s_data
 {
-	void			*mlx;
-	void			*mlx_win;
-	unsigned int	res_x;
-	unsigned int	res_y;
-	t_img			*img;
+	struct gui_window	window;
+	unsigned int		res_x;
+	unsigned int		res_y;
 	t_params		*params;
 }	t_data;
 

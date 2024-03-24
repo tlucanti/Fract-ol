@@ -25,22 +25,22 @@
 # define TERM_BLACK		"\e[1;90m"
 # define TERM_RED		"\e[1;91m"
 # define TERM_GREEN		"\e[1;92m"
-# define TERM_YELLOW	"\e[1;93m"
+# define TERM_YELLOW		"\e[1;93m"
 # define TERM_BLUE		"\e[1;94m"
-# define TERM_PURPLE	"\e[1;95m"
+# define TERM_PURPLE		"\e[1;95m"
 # define TERM_CYAN		"\e[1;96m"
 # define TERM_WHITE		"\e[1;97m"
 # define TERM_RESET		"\e[0m"
 
-# define OK				TERM_GREEN
+# define OK			TERM_GREEN
 # define WARNING		TERM_YELLOW
 # define ERROR			TERM_RED
 # define INFO			TERM_BLUE
 # define RESET			TERM_RESET
 
 # define OK_TOKEN		1
-# define WARNING_TOKEN	2
-# define ERROR_TOKEN	3
+# define WARNING_TOKEN		2
+# define ERROR_TOKEN		3
 # define INFO_TOKEN		4
 
 #endif

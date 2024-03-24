@@ -39,10 +39,10 @@ t_data	*get_data(void)
 	return (data);
 }
 
-inline void	put_pixel(const t_data *restrict data, int x, int y,
+inline void	put_pixel(t_data *restrict data, int x, int y,
 	unsigned int col)
 {
-	data->img->addr[y *(data->img->line_length >> 2u) + x] = col;
+	gui_set_pixel(&data->window, x, y, col);
 }
 
 inline int	ft_isspace(int __c)

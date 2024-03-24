@@ -13,20 +13,16 @@
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# include <math.h>
-# include <stddef.h>
-
-# include "../inc/mlx.h"
 # include "../inc/global.h"
 
 int		main(int argc, const char **argv);
 void	ft_mlx_init(t_data *restrict data);
 int		mandelbrot_1(const FLOAT *restrict field_real,
-			const FLOAT *restrict field_imag, const t_data *restrict data);
+			const FLOAT *restrict field_imag, t_data *restrict data);
 int		julia_1(const FLOAT *restrict field_real,
-			const FLOAT *restrict field_imag, const t_data *restrict data);
+			const FLOAT *restrict field_imag, t_data *restrict data);
 int		newton_pool(const FLOAT *restrict field_real,
-			const FLOAT *restrict field_imag, const t_data *restrict data);
+			const FLOAT *restrict field_imag, t_data *restrict data);
 int		palette1(FLOAT intensity) __attribute__((warn_unused_result));
 int		palette2(FLOAT intensity) __attribute__((warn_unused_result));
 int		palette3(FLOAT intensity) __attribute__((warn_unused_result));
@@ -45,13 +41,11 @@ int		ft_isspace(int __c) __attribute__((warn_unused_result));
 int		ft_isdigit(int __c) __attribute__((warn_unused_result));
 int		ft_memcmp(const void *s1, const void *s2, size_t len);
 int		ft_atoi(const char *restrict str) __attribute__((warn_unused_result));
-void	put_pixel(const t_data *restrict data, int x, int y, unsigned int col);
+void	put_pixel(t_data *restrict data, int x, int y, unsigned int col);
 void	set_options(const char **argv, t_data *restrict data,
 			t_params *restrict params);
 int		screenshot(const t_data *restrict data);
 void	*ft_memset(void *s, int c, size_t len);
-
-# define WINDOW			(char *)"Fract-ol"
 
 # define GRADIENT_D		2
 # define GRADIENT_K		4

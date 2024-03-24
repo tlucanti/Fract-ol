@@ -15,6 +15,8 @@
 #include "fract_ol.h"
 #include "color.h"
 
+#include <stdio.h>
+
 void	print_info(const t_data *restrict data);
 int		__ft_button_press_extension_1(int key_code, t_data *restrict data);
 int		__ft_button_press_extension_2(int key_code, t_data *restrict data);
@@ -26,25 +28,24 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 	FLOAT	y;
 
 	data = get_data();
-	mouse_y = data->res_y * MOUSE_CORRECT + mouse_y;
+	//mouse_y = data->res_y * MOUSE_CORRECT + mouse_y;
 	x = data->params->center_real + data->params->width
 		/ (FLOAT)data->res_x * (mouse_x - (FLOAT)data->res_x / 2);
 	y = data->params->center_imag + data->params->width
 		* ((FLOAT)data->res_y / (FLOAT)data->res_x) / (FLOAT)data->res_y
 		* (mouse_y - (FLOAT)data->res_y / 2);
-	if (key_code == MOUSEWHEELIN)
+	if (key_code == MOUSE_SCROLL_UP)
 	{
 		data->params->center_imag = y - (y - data->params->center_imag) * SCALE;
 		data->params->center_real = x - (x - data->params->center_real) * SCALE;
 		data->params->width *= SCALE;
 	}
-	else if (key_code == MOUSEWHEELOUT)
+	else if (key_code == MOUSE_SCROLL_DOWN)
 	{
 		data->params->center_real = x - (x - data->params->center_real) / SCALE;
 		data->params->center_imag = y - (y - data->params->center_imag) / SCALE;
 		data->params->width /= SCALE;
 	}
-	draw_image(0);
 	return (0);
 }
 
@@ -53,15 +54,15 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 	t_data	*restrict data;
 
 	data = get_data();
-	if (key_code == KEY_ESC)
+	if (key_code == KEY_X)
 		ft_close_window();
-	else if (key_code == NUM_UP)
+	else if (key_code == KEY_NUM_UP)
 		data->params->center_imag -= data->params->width * KEY_SPEED;
-	else if (key_code == NUM_DOWN)
+	else if (key_code == KEY_NUM_DOWN)
 		data->params->center_imag += data->params->width * KEY_SPEED;
-	else if (key_code == NUM_RIGHT)
+	else if (key_code == KEY_NUM_RIGHT)
 		data->params->center_real += data->params->width * KEY_SPEED;
-	else if (key_code == NUM_LEFT)
+	else if (key_code == KEY_NUM_LEFT)
 		data->params->center_real -= data->params->width * KEY_SPEED;
 	else if (key_code == KEY_UP)
 		data->params->recursion_depth = (unsigned int)(data->params
@@ -71,34 +72,32 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 				->recursion_depth / SCALE);
 	else
 		return (__ft_button_press_extension_1(key_code, data));
-	draw_image(0);
 	return (0);
 }
 
 inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 {
-	if (key_code == I_BUTTON)
+	if (key_code == KEY_I)
 	{
 		print_info(data);
 		return (0);
 	}
-	else if (key_code == W_BUTTON)
+	else if (key_code == KEY_W)
 		data->params->c_imag *= 1.1;
-	else if (key_code == S_BUTTON)
+	else if (key_code == KEY_S)
 		data->params->c_imag /= 1.1;
-	else if (key_code == D_BUTTON)
+	else if (key_code == KEY_D)
 		data->params->c_real *= 1.002;
-	else if (key_code == A_BUTTON)
+	else if (key_code == KEY_A)
 		data->params->c_real /= 1.002;
-	else if (key_code == PLUS_BUTTON)
-		ft_mouse_press(4, (int)data->res_x / 2, (int)data->res_y * OSX_KEY / 2);
-	else if (key_code == MINUS_BUTTON)
-		ft_mouse_press(5, (int)data->res_x / 2, (int)data->res_y * OSX_KEY / 2);
-	else if (key_code == P_BUTON)
+	else if (key_code == KEY_PLUS)
+		ft_mouse_press(MOUSE_SCROLL_DOWN, (int)data->res_x / 2, (int)data->res_y / 2);
+	else if (key_code == KEY_MINUS)
+		ft_mouse_press(MOUSE_SCROLL_UP, (int)data->res_x / 2, (int)data->res_y / 2);
+	else if (key_code == KEY_P)
 		screenshot(data);
 	else
 		return (__ft_button_press_extension_2(key_code, data));
-	draw_image(0);
 	return (0);
 }
 
@@ -110,7 +109,6 @@ inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
 		swap_palette_backw(data);
 	else
 		return (0);
-	draw_image(0);
 	return (0);
 }
 

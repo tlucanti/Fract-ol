@@ -13,10 +13,6 @@
 #ifndef ERROR_H
 # define ERROR_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-
 void	ft_perror(const char *restrict parent, int errorcode,
 			const char *restrict message);
 void	ft_warning(const char *restrict parent, int errorcode,
@@ -38,17 +34,17 @@ void	print_help_message(void) __attribute__((noreturn));
 # define E_RES_INP		(-5)
 # define E_RES_LIM		(-6)
 # define E_CNT_INP		(-7)
-# define E_UNREC_OPT	(-8)
+# define E_UNREC_OPT		(-8)
 # define E_REQ_LIM		(-9)
-# define E_SCHEME_INP	(-10)
-# define E_SCREENSHOT	(-11)
+# define E_SCHEME_INP		(-10)
+# define E_SCREENSHOT		(-11)
 
 # define W_SHEME_M		(-12)
 # define W_SHEME_J		(-13)
 # define W_SHEME_N		(-14)
 
 # define K_CLOSED		(-15)
-# define K_SCREENSHOT	(-16)
+# define K_SCREENSHOT		(-16)
 
 # define I_PARAM		(-17)
 

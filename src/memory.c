@@ -13,6 +13,8 @@
 #include "memory.h"
 #include "error.h"
 
+#include <stdlib.h>
+
 void	*xmalloc(size_t size)
 {
 	register void	*ptr;

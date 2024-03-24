@@ -15,10 +15,15 @@
 #include "memory.h"
 #include "event.h"
 #include "error.h"
-#include "color.h"
+
+#include <guilib.h>
+#include <stdguilib.h>
+
+#include <stdlib.h>
 
 void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 			FLOAT **restrict field_imag, const t_data *restrict data);
+static void callback(struct gui_window *window, int key, bool pressed);
 
 int	main(int argc, const char **argv)
 {
@@ -27,16 +32,24 @@ int	main(int argc, const char **argv)
 
 	(void)argc;
 	data = get_data();
-	data->mlx = mlx_init();
-	if (!data->mlx)
+	gui_bootstrap();
+	if (false)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
 	set_options(argv + 1, data, &params);
-	ft_mlx_init(data);
+	gui_create(&data->window, data->res_x, data->res_y);
+	gui_key_hook(&data->window, callback);
+
 	data->params = &params;
-	mlx_string_put(data->mlx, data->mlx_win, (int)data->res_x / 2,
-		(int)data->res_y / 2, WHITE, (char *)"LOADING ...");
-	draw_image(0);
-	mlx_loop(data->mlx);
+	//mlx_string_put(data->mlx, data->mlx_win, (int)data->res_x / 2,
+	//	(int)data->res_y / 2, WHITE, (char *)"LOADING ...");
+
+	while (true) {
+		draw_image(0);
+		gui_draw(&data->window);
+		gui_wfi(&data->window);
+		printf("fps: %f\r\n", gui_get_fps());
+	}
+	ft_close_window();
 }
 
 void	draw_image(int do_free)
@@ -59,7 +72,6 @@ void	draw_image(int do_free)
 		julia_1(field_real, field_imag, data);
 	else if (data->params->set == 'n')
 		newton_pool(field_real, field_imag, data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 }
 
 inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
@@ -92,21 +104,18 @@ inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 	}
 }
 
-void	ft_mlx_init(t_data *restrict data)
+static void callback(struct gui_window *window, int key, bool pressed)
 {
-	data->mlx_win = mlx_new_window(data->mlx, (int)data->res_x,
-			(int)data->res_y, WINDOW);
-	if (!data->mlx_win)
-		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
-	data->img = (t_img *)xmalloc(sizeof(t_img));
-	data->img->img = mlx_new_image(data->mlx, (int)data->res_x,
-			(int)data->res_y);
-	if (!data->img->img)
-		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
-	data->img->addr = (unsigned *)mlx_get_data_addr(data->img->img, &data->img
-			->bits_per_pixel, &data->img->line_length, &data->img->endian);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
-	mlx_hook(data->mlx_win, 33, 0, ft_close_window, NULL);
-	mlx_hook(data->mlx_win, 04, 1L << 2, (int (*)())(long)ft_mouse_press, NULL);
-	mlx_key_hook(data->mlx_win, (int (*)())(long)ft_button_press, NULL);
+	if (!pressed) {
+		return;
+	}
+
+	if (key <= 7 || key == MOUSE_SCROLL_UP || key == MOUSE_SCROLL_DOWN) {
+		int x, y;
+
+		gui_mouse(window, &x, &y);
+		ft_mouse_press(key, x, y);
+	} else {
+		ft_button_press(key, NULL);
+	}
 }

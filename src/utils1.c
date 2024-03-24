@@ -12,9 +12,11 @@
 
 #include "fract_ol.h"
 #include "error.h"
+
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <string.h>
 
 int	ft_atoi(const char *restrict str)
 {
@@ -58,7 +60,7 @@ int	screenshot(const t_data *restrict data)
 			->res_y) << 48u;
 	header[0x03] = (unsigned) data->res_y >> 16u | 0x2000010000u;
 	_ = write(fd, header, 56);
-	_ += write(fd, data->img->addr, data->res_x * data->res_y * 4);
+	_ += write(fd, gui_raw_pixels(&data->window), data->res_x * data->res_y * 4);
 	(void)_;
 	close(fd);
 	ft_ok("fract-ol", K_SCREENSHOT, "as ./scr.bmp");
