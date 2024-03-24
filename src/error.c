@@ -41,9 +41,9 @@ void	ft_message(unsigned int type, const char *restrict parent,
 		printf("%s%s:%s ", TERM_WHITE, parent, RESET);
 	printf("%s", ft_strerror(errorcode));
 	if (message)
-		printf(": %s%s%s\n", WARNING, message, RESET);
+		printf(": %s%s%s\r\n", WARNING, message, RESET);
 	else
-		printf("\n");
+		printf("\r\n");
 }
 
 inline void	ft_perror_exit(const char *restrict parent, int errorcode,

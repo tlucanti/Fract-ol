@@ -85,7 +85,7 @@ inline void	__print_help_message_extension_2(void)
 		"Examples\r\n"
 		"./Fract-ol m -R1920+1080 -c-0.7436430340132807-0.1318261346682662i \\"
 		"\t\r\n-w2e-5 -d1300\r\n"
-		"./Fract-ol j -c4e-5i+3e-3 -R800+600 -w1e-3 -d\r\n"
+		"./Fract-ol j -c4e-5i+3e-3 -R800+600 -w1e-3 -d2000\r\n"
 		"\r\n"
 		"Full information avaliable in:\r\n"
 		"\t<https://github.com/tlucanti/Fract-ol>\r\n"

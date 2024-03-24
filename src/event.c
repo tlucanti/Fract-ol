@@ -115,21 +115,21 @@ inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
 inline void	print_info(const t_data *restrict data)
 {
 	printf(
-		INFO "[INFO] " TERM_WHITE " fract-ol: " WARNING "IMAGE PARAMETERS\n"
-		OK "  point " WARNING "> " INFO "%Lg%+Lgi\n"
-		OK "  width " WARNING "> " INFO "%Lg\n"
-		OK "  iter " WARNING " > " INFO "%d" RESET" \n",
+		INFO "[INFO] " TERM_WHITE " fract-ol: " WARNING "IMAGE PARAMETERS\r\n"
+		OK "  point " WARNING "> " INFO "%Lg%+Lgi\r\n"
+		OK "  width " WARNING "> " INFO "%Lg\r\n"
+		OK "  iter " WARNING " > " INFO "%d" RESET" \r\n",
 		(long double)data->params->center_real,
 		(long double)data->params->center_imag,
 		(long double)data->params->width,
 		data->params->recursion_depth
 		);
 	printf(
-		INFO "[INFO] " TERM_WHITE "parameters by command:\n"
+		INFO "[INFO] " TERM_WHITE "parameters by command:\r\n"
 		"\t" OK "./Fract-ol " ERROR "%c " WARNING "-c" TERM_CYAN
 		"%.16Lg%+.16Lgi" WARNING " -w" TERM_CYAN "%.16Lg" WARNING " -d"
 		TERM_CYAN "%d" WARNING " -p" TERM_CYAN "%.16Lg%+.16Lgi" WARNING " -R"
-		TERM_CYAN "%d%+d" RESET "\n", data->params->set,
+		TERM_CYAN "%d%+d" RESET "\r\n", data->params->set,
 		(long double)data->params->center_real,
 		(long double)data->params->center_imag,
 		(long double)data->params->width, data->params->recursion_depth,
