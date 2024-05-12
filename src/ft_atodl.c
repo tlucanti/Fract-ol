@@ -13,11 +13,11 @@
 #include "global.h"
 #include "fract_ol.h"
 
-static long double	ft_atod_noexp(const char **str,
-						long double *sgn) __attribute__((warn_unused_result));
-static long double	ft_powd_fast(long double n,
+static FLOAT	ft_atod_noexp(const char **str,
+						FLOAT *sgn) __attribute__((warn_unused_result));
+static FLOAT	ft_powd_fast(FLOAT n,
 						int exp) __attribute__((warn_unused_result));
-static long double	ft_atod_frac(
+static FLOAT	ft_atod_frac(
 						const char **str__) __attribute__((warn_unused_result));
 
 FLOAT	ft_atodl(const char *str)
@@ -37,14 +37,14 @@ FLOAT	ft_atodl(const char *str)
 	return (sgn * ans);
 }
 
-char	*str2double(const char *str, long double *number)
+char	*str2double(const char *str, FLOAT *number)
 /*
-** converts [str] to long double, save result in [number]
+** converts [str] to FLOAT, save result in [number]
 ** return pointer to next symbol after end of number
 */
 {
-	long double	ans;
-	long double	sgn;
+	FLOAT	ans;
+	FLOAT	sgn;
 
 	if (str == NULL)
 		return (NULL);
@@ -67,9 +67,9 @@ char	*str2double(const char *str, long double *number)
 	return ((char *)str);
 }
 
-static long double	ft_atod_noexp(const char **str, long double *sgn)
+static FLOAT	ft_atod_noexp(const char **str, FLOAT *sgn)
 {
-	long double	ans;
+	FLOAT	ans;
 
 	ans = 0;
 	*sgn = 1;
@@ -78,18 +78,18 @@ static long double	ft_atod_noexp(const char **str, long double *sgn)
 	if (**str == '-' || **str == '+')
 		(*str)++;
 	while (ft_isdigit(**str))
-		ans = ans * (long double)10 + (long double)(*(*str)++ - 48);
+		ans = ans * (FLOAT)10 + (FLOAT)(*(*str)++ - 48);
 	return (ans);
 }
 
-static long double	ft_powd_fast(long double n, int exp)
+static FLOAT	ft_powd_fast(FLOAT n, int exp)
 {
-	long double	nn;
+	FLOAT nn;
 
 	if (exp == 0)
 		return (1);
 	else if (exp < 0)
-		return ((long double)1 / ft_powd_fast(n, -exp));
+		return ((FLOAT)1 / ft_powd_fast(n, -exp));
 	else if (exp % 2)
 		return (n * ft_powd_fast(n, exp - 1));
 	else
@@ -99,11 +99,11 @@ static long double	ft_powd_fast(long double n, int exp)
 	}
 }
 
-static long double	ft_atod_frac(const char **str__)
+static FLOAT	ft_atod_frac(const char **str__)
 {
 	char		*ptr;
 	char		*str;
-	long double	ans;
+	FLOAT	ans;
 
 	ans = 0;
 	ptr = *((char **)str__);
@@ -115,7 +115,7 @@ static long double	ft_atod_frac(const char **str__)
 	ptr -= 1;
 	while (str != ptr)
 	{
-		ans = ans * (long double)0.1 + (long double)(*ptr-- - 48);
+		ans = ans * (FLOAT)0.1 + (FLOAT)(*ptr-- - 48);
 	}
-	return (ans * (long double)0.1);
+	return (ans * (FLOAT)0.1);
 }

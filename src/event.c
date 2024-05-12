@@ -17,9 +17,9 @@
 
 #include <stdio.h>
 
-void	print_info(const t_data *restrict data);
-int		__ft_button_press_extension_1(int key_code, t_data *restrict data);
-int		__ft_button_press_extension_2(int key_code, t_data *restrict data);
+static void	print_info(const t_data *restrict data);
+static int		__ft_button_press_extension_1(int key_code, t_data *restrict data);
+static int		__ft_button_press_extension_2(int key_code, t_data *restrict data);
 
 int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 {
@@ -75,7 +75,7 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 	return (0);
 }
 
-inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
+static inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 {
 	if (key_code == KEY_I)
 	{
@@ -101,7 +101,7 @@ inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 	return (0);
 }
 
-inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
+static inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
 {
 	if (key_code == KEY_RIGHT)
 		swap_palette_forw(data);
@@ -112,7 +112,7 @@ inline int	__ft_button_press_extension_2(int key_code, t_data *restrict data)
 	return (0);
 }
 
-inline void	print_info(const t_data *restrict data)
+static inline void	print_info(const t_data *restrict data)
 {
 	printf(
 		INFO "[INFO] " TERM_WHITE " fract-ol: " WARNING "IMAGE PARAMETERS\r\n"

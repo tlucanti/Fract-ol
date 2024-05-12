@@ -14,7 +14,9 @@
 NAME		=	Fract-ol
 CC		=	clang
 CFLAGS		=	-Wall -Wextra -Werror
-COPTIONS	=	-O3
+CFLAGS		+=	-D NR_THREADS=`nproc --all`
+CFLAGS		+= 	-D FLOAT="long double"
+COPTIONS	=	-O3 -ffast-math
 # ------------------------------- linker options -------------------------------
 LIBRARY		=
 OBJS_DIR	=	obj

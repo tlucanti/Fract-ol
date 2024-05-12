@@ -12,7 +12,7 @@
 
 #include "global.h"
 
-int	__palette3_extension(FLOAT i);
+static int	__palette3_extension(FLOAT i);
 
 int	palette1(FLOAT i)
 /*
@@ -90,7 +90,7 @@ int	palette3(FLOAT i)
 		return (__palette3_extension(i));
 }
 
-inline int	__palette3_extension(FLOAT i)
+static inline int	__palette3_extension(FLOAT i)
 {
 	if (i < 8 * ONE_NINETH)
 		return ((int)(503 * i - 325) << 16 | (int)(170 * i + 57) << 8 | (int)

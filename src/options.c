@@ -13,12 +13,12 @@
 #include "fract_ol.h"
 #include "error.h"
 
-void	__set_options_extension_1(const char *restrict argv,
+static void	__set_options_extension_1(const char *restrict argv,
 			t_params *restrict params, t_data *restrict data);
-void	__set_options_extension_2(const char *restrict argv,
+static void	__set_options_extension_2(const char *restrict argv,
 			t_params *restrict params);
-void	__set_options_extension_3(t_params *restrict params);
-void	__set_options_extension_4(const char *restrict argv,
+static void	__set_options_extension_3(t_params *restrict params);
+static void	__set_options_extension_4(const char *restrict argv,
 			t_params *restrict params);
 
 void	set_options(const char **restrict argv, t_data *restrict data,
@@ -45,12 +45,12 @@ void	set_options(const char **restrict argv, t_data *restrict data,
 	data->res_y = 600;
 	__set_options_extension_3(params);
 	if (params->set == 'n')
-		params->palette = (int (*)(FLOAT, ...)) palette6;
+		params->palette = (void *)palette6;
 	while (*(++argv))
 		__set_options_extension_1(*argv, params, data);
 }
 
-inline void	__set_options_extension_1(const char *restrict argv,
+static inline void	__set_options_extension_1(const char *restrict argv,
 	t_params *restrict params, t_data *restrict data)
 {
 	if (!ft_memcmp(argv, "-R", 2))
@@ -72,7 +72,7 @@ inline void	__set_options_extension_1(const char *restrict argv,
 		__set_options_extension_2(argv, params);
 }
 
-inline void	__set_options_extension_2(const char *restrict argv,
+static inline void	__set_options_extension_2(const char *restrict argv,
 	t_params *restrict params)
 {
 	if (!ft_memcmp(argv, "-p", 2))
@@ -92,7 +92,7 @@ inline void	__set_options_extension_2(const char *restrict argv,
 		ft_info_exit("fract-ol", E_UNREC_OPT, argv);
 }
 
-inline void	__set_options_extension_3(t_params *restrict params)
+static inline void	__set_options_extension_3(t_params *restrict params)
 {
 	params->center_imag = 0;
 	params->width = 3;
@@ -101,26 +101,26 @@ inline void	__set_options_extension_3(t_params *restrict params)
 	params->c_imag = (FLOAT)0.131825253;
 	params->recursion_depth = 50 + 250 * (params->set == 'j')
 		+ 50 * (params->set == 'n');
-	params->palette = (int (*)(FLOAT, ...)) palette1;
+	params->palette = (void *)palette1;
 }
 
-inline void	__set_options_extension_4(const char *restrict argv,
+static inline void	__set_options_extension_4(const char *restrict argv,
 	t_params *restrict params)
 {
 	if (argv[3] != 0)
 		ft_info_exit("fract-ol", E_SCHEME_INP, argv + 2);
 	else if (argv[2] == '1' && !argv[3])
-		params->palette = (int (*)(FLOAT, ...)) palette1;
+		params->palette = (void *)palette1;
 	else if (argv[2] == '2' && !argv[3])
-		params->palette = (int (*)(FLOAT, ...)) palette2;
+		params->palette = (void *)palette2;
 	else if (argv[2] == '3' && !argv[3])
-		params->palette = (int (*)(FLOAT, ...)) palette3;
+		params->palette = (void *)palette3;
 	else if (argv[2] == '4' && !argv[3])
-		params->palette = (int (*)(FLOAT, ...)) palette4;
+		params->palette = (void *)palette4;
 	else if (argv[2] == '5' && !argv[3])
-		params->palette = (int (*)(FLOAT, ...)) palette5;
+		params->palette = (void *)palette5;
 	else if (argv[2] == '6' && !argv[3] && params->set == 'n')
-		params->palette = (int (*)(FLOAT, ...)) palette6;
+		params->palette = (void *)palette6;
 	else if (params->set == 'm')
 		ft_warning("fract-ol", W_SHEME_M, "defaulting to 1");
 	else if (params->set == 'j')

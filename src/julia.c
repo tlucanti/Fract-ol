@@ -13,7 +13,7 @@
 #include "fract_ol.h"
 #include "global.h"
 
-int	__recursive_color_compute_julia_extension(const t_params *restrict params,
+static int	__recursive_color_compute_julia_extension(const t_params *restrict params,
 		FLOAT real, FLOAT imag) __attribute__((warn_unused_result));
 
 int	julia_1(const FLOAT *restrict field_real,
@@ -24,25 +24,25 @@ int	julia_1(const FLOAT *restrict field_real,
 	unsigned int	x;
 	unsigned int	y;
 
-	x = 0;
-	while (x < data->res_x)
+	y = 0;
+	while (y < data->res_y)
 	{
-		y = 0;
-		while (y < data->res_y)
+		x = 0;
+		while (x < data->res_x)
 		{
 			real = field_real[x];
 			imag = field_imag[y];
 			put_pixel(data, (int)x, (int)y,
 				__recursive_color_compute_julia_extension(data->params,
 					real, imag));
-			++y;
+			++x;
 		}
-		++x;
+		++y;
 	}
 	return (0);
 }
 
-inline int	__recursive_color_compute_julia_extension(
+static inline int	__recursive_color_compute_julia_extension(
 	const t_params *restrict params, FLOAT real, FLOAT imag)
 {
 	unsigned int	req;
@@ -62,7 +62,7 @@ inline int	__recursive_color_compute_julia_extension(
 		imag_sq = imag * imag;
 		abs = real_sq + imag_sq;
 		if (abs > params->out_radius_sq)
-			return (params->palette((FLOAT)req / params->recursion_depth));
+			return (params->palette((FLOAT)req / params->recursion_depth, 0, 0));
 		++req;
 	}
 	return ((int)(abs * 255));

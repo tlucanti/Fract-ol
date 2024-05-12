@@ -12,8 +12,8 @@
 
 #include "global.h"
 
-int	__palette4_extension(FLOAT i);
-int	__palette5_extension(FLOAT i);
+static int	__palette4_extension(FLOAT i);
+static int	__palette5_extension(FLOAT i);
 
 int	palette4(FLOAT i)
 /*
@@ -46,7 +46,7 @@ int	palette4(FLOAT i)
 		return (__palette4_extension(i));
 }
 
-inline int	__palette4_extension(FLOAT i)
+static inline int	__palette4_extension(FLOAT i)
 {
 	if (i < 8 * ONE_NINETH)
 		return ((int)(80 * i + 180) << 16 | (int)(422 * i - 210) << 8 | (int)
@@ -86,7 +86,7 @@ int	palette5(FLOAT i)
 		return (__palette5_extension(i));
 }
 
-inline int	__palette5_extension(FLOAT i)
+static inline int	__palette5_extension(FLOAT i)
 {
 	if (i < 8 * ONE_NINETH)
 		return ((int)(44 * i - 4) << 16 | (int)(-458 * i + 579) << 8 | (int)

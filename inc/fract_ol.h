@@ -35,7 +35,7 @@ void	swap_palette_backw(const t_data *restrict data);
 int		ft_atodl_complex(const char *restrict str, FLOAT *real, FLOAT *imag);
 FLOAT	ft_atodl(const char *restrict str);
 char	*str2double(const char *str,
-			long double *number) __attribute__((warn_unused_result));
+			FLOAT *number) __attribute__((warn_unused_result));
 int		ft_atoi_double(const char *restrict str, int *i1, int *i2);
 int		ft_isspace(int __c) __attribute__((warn_unused_result));
 int		ft_isdigit(int __c) __attribute__((warn_unused_result));
@@ -51,7 +51,7 @@ void	*ft_memset(void *s, int c, size_t len);
 # define GRADIENT_K		4
 # define RV_LOG_2		1.4426950408889634
 # define EPS			0.01
-# define PI_FIFTH		0.6283185307179586
-# define PI_HALF		1.5707963267948966
+# define PI_FIFTH		(M_PI / 5.0L)
+# define PI_HALF		(M_PI / 2.0L)
 
 #endif

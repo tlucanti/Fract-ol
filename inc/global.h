@@ -13,14 +13,14 @@
 #ifndef GLOBAL_H
 # define GLOBAL_H
 
+#ifndef FLOAT
 # define FLOAT long double
+#endif
 
-# define ONE_SIXTH	0.16666666666666666L
-# define ONE_NINETH	0.11111111111111111L
+# define ONE_SIXTH	(1.0L / 6.0L)
+# define ONE_NINETH	(1.0L / 9.0L)
 
 # include <guilib.h>
-
-typedef FLOAT	t_float;
 
 typedef struct s_params
 {
@@ -32,7 +32,7 @@ typedef struct s_params
 	FLOAT		c_real;
 	FLOAT		c_imag;
 	unsigned int	recursion_depth;
-	int		(*palette)(t_float, ...);
+	int		(*palette)(FLOAT, FLOAT, FLOAT);
 }	t_params;
 
 typedef struct s_data

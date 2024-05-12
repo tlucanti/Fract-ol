@@ -21,7 +21,7 @@
 
 #include <stdlib.h>
 
-void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
+static void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 			FLOAT **restrict field_imag, const t_data *restrict data);
 static void callback(struct gui_window *window, int key, bool pressed);
 
@@ -75,7 +75,7 @@ void	draw_image(int do_free)
 		newton_pool(field_real, field_imag, data);
 }
 
-inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
+static inline void	__fill_draw_arrays_extension(FLOAT **restrict field_real,
 	FLOAT **restrict field_imag, const t_data *restrict data)
 {
 	unsigned int	i;

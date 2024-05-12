@@ -15,7 +15,7 @@
 #include "global.h"
 #include "color.h"
 
-int	__recursive_color_compute_newton_pool_extension(
+static int	__recursive_color_compute_newton_pool_extension(
 		const t_params *restrict params, FLOAT real,
 		FLOAT imag) __attribute__((warn_unused_result));
 
@@ -27,20 +27,20 @@ int	newton_pool(const FLOAT *restrict field_real,
 	unsigned short	x;
 	unsigned short	y;
 
-	x = 0;
-	while (x < data->res_x)
+	y = 0;
+	while (y < data->res_y)
 	{
-		y = 0;
-		while (y < data->res_y)
+		x = 0;
+		while (x < data->res_x)
 		{
 			real = field_real[x];
 			imag = field_imag[y];
 			put_pixel(data, x, y,
 				__recursive_color_compute_newton_pool_extension(data->params,
 					real, imag));
-			++y;
+			++x;
 		}
-		++x;
+		++y;
 	}
 	return (0);
 }
@@ -52,11 +52,11 @@ int	palette6(FLOAT intensity, FLOAT re, FLOAT im)
 
 	req = (int)((1 - intensity) * 255);
 	if (re > 0)
-		root = (int)(atanl(im / re) / PI_FIFTH);
+		root = (int)(atan2(im, re) / PI_FIFTH);
 	else if (im > 0)
-		root = (int)((PI_HALF + atanl(im / -re)) / PI_FIFTH);
+		root = (int)((PI_HALF + atan2(im, -re)) / PI_FIFTH);
 	else
-		root = (int)((PI_HALF + atanl(im / re)) / -PI_FIFTH);
+		root = (int)((PI_HALF + atan2(im, re)) / -PI_FIFTH);
 	if (root == 0)
 		return (req << 16u);
 	else if (root == 1 || root == 2)
@@ -68,10 +68,10 @@ int	palette6(FLOAT intensity, FLOAT re, FLOAT im)
 	else if (root == -1 || root == -2)
 		return (req << 16u | req);
 	else
-		return (WHITE);
+		return (BLACK);
 }
 
-inline int	__recursive_color_compute_newton_pool_extension(
+static inline int	__recursive_color_compute_newton_pool_extension(
 	const t_params *restrict params, FLOAT real, FLOAT imag)
 {
 	unsigned short	req;

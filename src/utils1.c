@@ -67,7 +67,7 @@ int	screenshot(const t_data *restrict data)
 	return (0);
 }
 
-int	ft_atodl_complex(const char *str, long double *real, long double *imag)
+int	ft_atodl_complex(const char *str, FLOAT *real, FLOAT *imag)
 {
 	int	__im;
 
@@ -90,22 +90,22 @@ int	ft_atodl_complex(const char *str, long double *real, long double *imag)
 void	swap_palette_forw(const t_data *restrict data)
 {
 	if ((size_t)data->params->palette == (size_t)palette1)
-		data->params->palette = (int (*)(FLOAT, ...)) palette2;
+		data->params->palette = (void *)palette2;
 	else if ((size_t)data->params->palette == (size_t)palette2)
-		data->params->palette = (int (*)(FLOAT, ...)) palette3;
+		data->params->palette = (void *)palette3;
 	else if ((size_t)data->params->palette == (size_t)palette3)
-		data->params->palette = (int (*)(FLOAT, ...)) palette4;
+		data->params->palette = (void *)palette4;
 	else if ((size_t)data->params->palette == (size_t)palette4)
-		data->params->palette = (int (*)(FLOAT, ...)) palette5;
+		data->params->palette = (void *)palette5;
 	else if ((size_t)data->params->palette == (size_t)palette5)
 	{
 		if (data->params->set == 'n')
-			data->params->palette = (int (*)(FLOAT, ...)) palette6;
+			data->params->palette = (void *)palette6;
 		else
-			data->params->palette = (int (*)(FLOAT, ...)) palette1;
+			data->params->palette = (void *)palette1;
 	}
 	else
-		data->params->palette = (int (*)(FLOAT, ...)) palette1;
+		data->params->palette = (void *)palette1;
 }
 
 void	swap_palette_backw(const t_data *restrict data)
@@ -113,18 +113,18 @@ void	swap_palette_backw(const t_data *restrict data)
 	if ((size_t)data->params->palette == (size_t)palette1)
 	{
 		if (data->params->set == 'n')
-			data->params->palette = (int (*)(FLOAT, ...)) palette6;
+			data->params->palette = (void *)palette6;
 		else
-			data->params->palette = (int (*)(FLOAT, ...)) palette5;
+			data->params->palette = (void *)palette5;
 	}
 	else if ((size_t)data->params->palette == (size_t)palette2)
-		data->params->palette = (int (*)(FLOAT, ...)) palette1;
+		data->params->palette = (void *)palette1;
 	else if ((size_t)data->params->palette == (size_t)palette3)
-		data->params->palette = (int (*)(FLOAT, ...)) palette2;
+		data->params->palette = (void *)palette2;
 	else if ((size_t)data->params->palette == (size_t)palette4)
-		data->params->palette = (int (*)(FLOAT, ...)) palette3;
+		data->params->palette = (void *)palette3;
 	else if ((size_t)data->params->palette == (size_t)palette5)
-		data->params->palette = (int (*)(FLOAT, ...)) palette4;
+		data->params->palette = (void *)palette4;
 	else
-		data->params->palette = (int (*)(FLOAT, ...)) palette5;
+		data->params->palette = (void *)palette5;
 }
