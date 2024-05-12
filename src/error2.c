@@ -90,6 +90,6 @@ inline void	__print_help_message_extension_2(void)
 		"Full information avaliable in:\r\n"
 		"\t<https://github.com/tlucanti/Fract-ol>\r\n"
 		"\r\n"
-		"(Fract-ol v0.2)\t\ttlucanti\r\n"
+		"(Fract-ol v2.1)\t\ttlucanti\r\n"
 		);
 }
