@@ -22,7 +22,7 @@ INCLUDE_DIR	=	inc
 SRCS_DIR	=	src
 LIBGNL		=
 LIBFT		=
-GUILIB		=	../GUIlib
+LIBGUI		=	../GUIlib
 # ------------------------------- project sorces -------------------------------
 SRCS		=	\
 			error1		\
@@ -57,10 +57,10 @@ HDRS		=	\
 RM		=	rm -f
 OBJS		=	$(addprefix ${OBJS_DIR}/,${SRCS:=.o})
 DEPS		=	$(addprefix ${INCLUDE_DIR}/,${HDRS:=.h})
-INCLUDE		=	-I ${INCLUDE_DIR} -I ${GUILIB}/include
+INCLUDE		=	-I ${INCLUDE_DIR} -I ${LIBGUI}/include
 OS		=	$(shell uname -s | tr A-Z a-z)
 
-LIBRARY		=	-L ${GUILIB} -lgui -lstdgui -lm -lsixel
+LIBRARY		=	-lstdgui -lm `../GUIlib/guiflags.sh`
 
 # ------------------------------------------------------------------------------
 all:	${OBJS_DIR} ${NAME}

@@ -34,13 +34,13 @@ int	ft_mouse_press(int key_code, int mouse_x, int mouse_y)
 	y = data->params->center_imag + data->params->width
 		* ((FLOAT)data->res_y / (FLOAT)data->res_x) / (FLOAT)data->res_y
 		* (mouse_y - (FLOAT)data->res_y / 2);
-	if (key_code == MOUSE_SCROLL_UP)
+	if (key_code == SCROLL_UP)
 	{
 		data->params->center_imag = y - (y - data->params->center_imag) * SCALE;
 		data->params->center_real = x - (x - data->params->center_real) * SCALE;
 		data->params->width *= SCALE;
 	}
-	else if (key_code == MOUSE_SCROLL_DOWN)
+	else if (key_code == SCROLL_DOWN)
 	{
 		data->params->center_real = x - (x - data->params->center_real) / SCALE;
 		data->params->center_imag = y - (y - data->params->center_imag) / SCALE;
@@ -56,13 +56,13 @@ int	ft_button_press(int key_code, __attribute__((unused)) void *__d)
 	data = get_data();
 	if (key_code == KEY_X)
 		ft_close_window();
-	else if (key_code == KEY_NUM_UP)
+	else if (key_code == KEY_NUM_UP || (key_code == KEY_W && !gui_pressed(data->window, KEY_LSHIFT)))
 		data->params->center_imag -= data->params->width * KEY_SPEED;
-	else if (key_code == KEY_NUM_DOWN)
+	else if (key_code == KEY_NUM_DOWN || (key_code == KEY_S && !gui_pressed(data->window, KEY_LSHIFT)))
 		data->params->center_imag += data->params->width * KEY_SPEED;
-	else if (key_code == KEY_NUM_RIGHT)
+	else if (key_code == KEY_NUM_RIGHT || (key_code == KEY_D && !gui_pressed(data->window, KEY_LSHIFT)))
 		data->params->center_real += data->params->width * KEY_SPEED;
-	else if (key_code == KEY_NUM_LEFT)
+	else if (key_code == KEY_NUM_LEFT || (key_code == KEY_A && !gui_pressed(data->window, KEY_LSHIFT)))
 		data->params->center_real -= data->params->width * KEY_SPEED;
 	else if (key_code == KEY_UP)
 		data->params->recursion_depth = (unsigned int)(data->params
@@ -82,18 +82,18 @@ inline int	__ft_button_press_extension_1(int key_code, t_data *restrict data)
 		print_info(data);
 		return (0);
 	}
-	else if (key_code == KEY_W)
+	else if (key_code == KEY_W && gui_pressed(data->window, KEY_LSHIFT))
 		data->params->c_imag *= 1.1;
-	else if (key_code == KEY_S)
+	else if (key_code == KEY_S && gui_pressed(data->window, KEY_LSHIFT))
 		data->params->c_imag /= 1.1;
-	else if (key_code == KEY_D)
+	else if (key_code == KEY_D && gui_pressed(data->window, KEY_LSHIFT))
 		data->params->c_real *= 1.002;
-	else if (key_code == KEY_A)
+	else if (key_code == KEY_A && gui_pressed(data->window, KEY_LSHIFT))
 		data->params->c_real /= 1.002;
-	else if (key_code == KEY_PLUS)
-		ft_mouse_press(MOUSE_SCROLL_DOWN, (int)data->res_x / 2, (int)data->res_y / 2);
+	else if (key_code == KEY_EQUAL)
+		ft_mouse_press(SCROLL_DOWN, (int)data->res_x / 2, (int)data->res_y / 2);
 	else if (key_code == KEY_MINUS)
-		ft_mouse_press(MOUSE_SCROLL_UP, (int)data->res_x / 2, (int)data->res_y / 2);
+		ft_mouse_press(SCROLL_UP, (int)data->res_x / 2, (int)data->res_y / 2);
 	else if (key_code == KEY_P)
 		screenshot(data);
 	else

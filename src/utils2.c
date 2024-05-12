@@ -20,7 +20,7 @@ int	ft_close_window(void)
 	t_data	*data;
 
 	data = get_data();
-	gui_destroy(&data->window);
+	gui_destroy(data->window);
 	ft_ok("fract-ol", K_CLOSED, "successfully");
 	ft_exit(EXIT_SUCCESS);
 }

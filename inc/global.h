@@ -37,7 +37,7 @@ typedef struct s_params
 
 typedef struct s_data
 {
-	struct gui_window	window;
+	struct gui_window	*window;
 	unsigned int		res_x;
 	unsigned int		res_y;
 	t_params		*params;

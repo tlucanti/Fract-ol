@@ -42,7 +42,7 @@ t_data	*get_data(void)
 inline void	put_pixel(t_data *restrict data, int x, int y,
 	unsigned int col)
 {
-	gui_set_pixel(&data->window, x, y, col);
+	gui_set_pixel(data->window, x, y, col);
 }
 
 inline int	ft_isspace(int __c)

@@ -36,18 +36,19 @@ int	main(int argc, const char **argv)
 	if (false)
 		ft_perror_exit("fract-ol", E_MLX_INIT, NULL, EXIT_FAILURE);
 	set_options(argv + 1, data, &params);
-	gui_create(&data->window, data->res_x, data->res_y);
-	gui_key_hook(&data->window, callback);
+        data->window = gui_alloc();
+	gui_create(data->window, data->res_x, data->res_y);
+	gui_key_hook(data->window, callback);
 
 	data->params = &params;
 	//mlx_string_put(data->mlx, data->mlx_win, (int)data->res_x / 2,
 	//	(int)data->res_y / 2, WHITE, (char *)"LOADING ...");
 
-	while (true) {
+	while (!gui_closed(data->window)) {
 		draw_image(0);
-		gui_draw(&data->window);
-		gui_wfi(&data->window);
-		printf("fps: %f\r\n", gui_get_fps());
+		gui_draw(data->window);
+		gui_wfi(data->window);
+		// printf("fps: %f\r\n", gui_get_fps());
 	}
 	ft_close_window();
 }
@@ -110,7 +111,7 @@ static void callback(struct gui_window *window, int key, bool pressed)
 		return;
 	}
 
-	if (key <= 7 || key == MOUSE_SCROLL_UP || key == MOUSE_SCROLL_DOWN) {
+	if (key <= 7 || key == SCROLL_UP || key == SCROLL_DOWN) {
 		int x, y;
 
 		gui_mouse(window, &x, &y);
